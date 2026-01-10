@@ -3,484 +3,252 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Epic Project • Promo</title>
+  <title>Epic Project • The Future of Free Software</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{
-      --bg1:#1766ff;
-      --bg2:#ff3a2e;
-      --card: rgba(255,255,255,0.10);
-      --card2: rgba(255,255,255,0.14);
-      --text: rgba(255,255,255,0.96);
-      --muted: rgba(255,255,255,0.82);
-      --muted2: rgba(255,255,255,0.68);
-      --shadow: 0 18px 40px rgba(0,0,0,0.25);
-      --shadow2: 0 10px 25px rgba(0,0,0,0.18);
-      --radius: 26px;
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+    :root {
+      --primary: #6366f1;
+      --secondary: #a855f7;
+      --accent: #22d3ee;
+      --bg: #030712;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      display:grid;
-      place-items:center;
-      padding: 24px;
-      background: radial-gradient(1200px 700px at 25% 30%, rgba(255,255,255,0.10), transparent 55%),
-                  radial-gradient(900px 600px at 70% 65%, rgba(255,255,255,0.10), transparent 55%),
-                  linear-gradient(90deg, var(--bg1) 0%, #3c63ff 35%, #b24ce9 58%, var(--bg2) 100%);
+    body {
+      background-color: var(--bg);
+      color: white;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
     }
 
-    /* Poster (phone-like vertical card) */
-    .poster{
-      width: min(520px, 92vw);
-      aspect-ratio: 9 / 16;
-      border-radius: 34px;
-      overflow:hidden;
-      position:relative;
-      box-shadow: var(--shadow);
-      background: linear-gradient(90deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
-      isolation:isolate;
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* soft fog */
-    .fog{
-      position:absolute; inset:-20%;
-      background:
-        radial-gradient(500px 380px at 20% 15%, rgba(255,255,255,0.12), transparent 65%),
-        radial-gradient(600px 420px at 70% 40%, rgba(255,255,255,0.10), transparent 60%),
-        radial-gradient(520px 420px at 50% 90%, rgba(0,0,0,0.10), transparent 70%);
-      filter: blur(2px);
-      z-index:0;
-      pointer-events:none;
+    .glass:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
     }
 
-    .content{
-      position:relative;
-      z-index:2;
-      height:100%;
-      padding: 34px 32px 28px;
-      display:flex;
-      flex-direction:column;
-      gap: 18px;
+    .glow-text {
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
     }
 
-    /* Header row */
-    .top{
-      display:flex;
-      align-items:center;
-      gap: 18px;
-      margin-top: 6px;
+    .hero-gradient {
+      background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
     }
 
-    .brandMark{
-      width: 74px; height: 74px;
-      border-radius: 999px;
-      background: conic-gradient(from 210deg, #2ae4ff, #7bff86, #ffd24b, #ff5bd6, #7c5cff, #2ae4ff);
-      display:grid;
-      place-items:center;
-      box-shadow: var(--shadow2);
-      border: 3px solid rgba(255,255,255,0.35);
+    .orb {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      filter: blur(100px);
+      opacity: 0.2;
+      position: absolute;
+      z-index: -1;
+      animation: pulse 10s infinite alternate;
     }
 
-    .brandInner{
-      width: 58px; height: 58px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.18);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      position:relative;
+    @keyframes pulse {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.3) translate(50px, 20px); }
     }
 
-    /* Simple “Android + Windows” glyphs (SVG-like via CSS blocks) */
-    .glyphs{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      transform: translateY(2px);
+    .grid-lines {
+      background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse at center, black, transparent 80%);
     }
 
-    /* Android-ish */
-    .android{
-      width: 20px; height: 16px;
-      border-radius: 6px 6px 8px 8px;
-      background: rgba(255,255,255,0.92);
-      position:relative;
-    }
-    .android:before,.android:after{
-      content:"";
-      position:absolute;
-      top:-5px; width:6px; height:6px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.92);
-    }
-    .android:before{ left:2px; transform: rotate(-18deg); }
-    .android:after{ right:2px; transform: rotate(18deg); }
-    .android .eye{
-      position:absolute; top:6px; width:2px; height:2px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-    }
-    .android .eye.left{ left:6px; }
-    .android .eye.right{ right:6px; }
-
-    /* Windows-ish */
-    .windows{
-      width: 18px; height: 18px;
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-    }
-    .windows span{
-      display:block;
-      background: rgba(255,255,255,0.92);
-      border-radius: 2px;
+    .nav-link {
+      position: relative;
+      color: #94a3b8;
+      transition: color 0.3s;
     }
 
-    .title{
-      font-size: clamp(30px, 4vw, 44px);
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      line-height: 1.05;
-      margin:0;
+    .nav-link:hover { color: white; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .floating {
+      animation: floating 3s infinite ease-in-out;
     }
 
-    .subtitle{
-      margin-top: 8px;
-      font-size: clamp(28px, 3.8vw, 46px);
-      font-weight: 900;
-      line-height: 1.06;
-      letter-spacing: 0.2px;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.20);
-    }
-
-    .subtitle span{
-      display:block;
-    }
-
-    .desc{
-      margin-top: 6px;
-      font-size: clamp(14px, 1.7vw, 18px);
-      line-height: 1.65;
-      color: var(--muted);
-      max-width: 92%;
-    }
-
-    /* Illustration area */
-    .hero{
-      margin-top: auto;
-      position:relative;
-      border-radius: 26px;
-      overflow:hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.08));
-      padding: 22px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
-    }
-
-    /* Faint UI doodles behind people */
-    .doodles{
-      position:absolute;
-      inset: 12px 12px 58px 12px;
-      opacity: 0.35;
-      filter: blur(0.2px);
-      pointer-events:none;
-    }
-    .doodles .rect{
-      position:absolute;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.03);
-    }
-    .doodles .rect.r1{ width: 54%; height: 46%; left: 16%; top: 18%; }
-    .doodles .rect.r2{ width: 32%; height: 18%; left: 6%; top: 36%; border-radius: 12px; }
-    .doodles .rect.r3{ width: 26%; height: 30%; right: 7%; top: 28%; border-radius: 14px; }
-    .doodles .dot{
-      position:absolute;
-      width: 7px; height: 7px; border-radius: 999px;
-      background: rgba(255,255,255,0.22);
-      left: 46%; top: 58%;
-    }
-
-    /* People (simple flat illustration) */
-    .people{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1fr 1.1fr 0.9fr;
-      align-items:end;
-      gap: 14px;
-      min-height: 260px;
-    }
-
-    .person{
-      position:relative;
-      border-radius: 18px;
-      height: 240px;
-      background: rgba(0,0,0,0.18);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-
-    .person .head{
-      position:absolute;
-      width: 70px; height: 70px;
-      border-radius: 999px;
-      background: #ffd2b5;
-      top: 18px; left: 18px;
-      box-shadow: inset 0 -8px 0 rgba(0,0,0,0.06);
-    }
-    .person .hair{
-      position:absolute;
-      width: 76px; height: 52px;
-      border-radius: 999px 999px 18px 18px;
-      background: rgba(0,0,0,0.35);
-      top: 14px; left: 16px;
-    }
-
-    .person .body{
-      position:absolute;
-      left: 12px; right: 12px;
-      bottom: 0;
-      height: 160px;
-      border-radius: 22px 22px 0 0;
-      background: rgba(255,255,255,0.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
-    }
-
-    .person .laptop{
-      position:absolute;
-      width: 120px; height: 70px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.18);
-      bottom: 34px; left: 18px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14);
-    }
-    .person .laptop:after{
-      content:"";
-      position:absolute;
-      left: 14px; top: 18px;
-      width: 28px; height: 28px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.20);
-    }
-
-    /* Center person (bigger) */
-    .person.center{
-      height: 270px;
-      background: rgba(0,0,0,0.14);
-    }
-    .person.center .head{ left: 28px; top: 22px; }
-    .person.center .hair{ left: 24px; top: 18px; width: 84px; }
-    .person.center .body{ height: 180px; }
-    .person.center .laptop{ width: 140px; height: 78px; left: 24px; bottom: 44px; }
-
-    /* Right person (standing with phone) */
-    .person.right{
-      height: 255px;
-      background: rgba(0,0,0,0.16);
-    }
-    .person.right .body{
-      height: 190px;
-      background: rgba(255,255,255,0.12);
-    }
-    .person.right .laptop{ display:none; }
-    .person.right .phone{
-      position:absolute;
-      width: 46px; height: 70px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.20);
-      right: 18px; top: 108px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
-    }
-    .person.right .phone:after{
-      content:"";
-      position:absolute;
-      width: 22px; height: 4px;
-      border-radius: 999px;
-      left: 12px; top: 10px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* Speech bubbles with platform icons */
-    .bubble{
-      position:absolute;
-      width: 78px; height: 78px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      box-shadow: var(--shadow2);
-      border: 2px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(10px);
-    }
-    .bubble.android{
-      left: 22px; top: 22px;
-      background: rgba(120,255,120,0.18);
-    }
-    .bubble.win{
-      right: 26px; top: 40px;
-      background: rgba(120,190,255,0.18);
-    }
-    .bubble .miniAndroid{
-      width: 26px; height: 20px;
-      border-radius: 8px 8px 10px 10px;
-      background: rgba(255,255,255,0.92);
-      position:relative;
-    }
-    .bubble .miniAndroid:before,.bubble .miniAndroid:after{
-      content:"";
-      position:absolute; top:-6px;
-      width: 7px; height: 7px; border-radius:999px;
-      background: rgba(255,255,255,0.92);
-    }
-    .bubble .miniAndroid:before{ left:2px; }
-    .bubble .miniAndroid:after{ right:2px; }
-    .bubble .miniWin{
-      width: 26px; height: 26px;
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3px;
-    }
-    .bubble .miniWin span{
-      display:block;
-      background: rgba(255,255,255,0.92);
-      border-radius: 3px;
-    }
-
-    /* CTA button */
-    .ctaWrap{
-      margin-top: 18px;
-      display:flex;
-      justify-content:center;
-    }
-    .cta{
-      border:0;
-      cursor:pointer;
-      width: min(86%, 360px);
-      height: 68px;
-      border-radius: 18px;
-      font-size: 26px;
-      font-weight: 800;
-      color: rgba(255,255,255,0.95);
-      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.22));
-      box-shadow: 0 16px 28px rgba(0,0,0,0.22),
-                  inset 0 1px 0 rgba(255,255,255,0.20);
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .cta:active{ transform: translateY(2px) scale(0.995); filter: brightness(0.98); }
-
-    /* Footer safe space (like poster bottom) */
-    .bottomSpace{ height: 6px; }
-
-    /* Small screens tweak */
-    @media (max-width: 420px){
-      .content{ padding: 28px 22px 22px; }
-      .brandMark{ width: 66px; height: 66px; }
-      .brandInner{ width: 52px; height: 52px; }
-      .desc{ max-width: 100%; }
-      .people{ gap: 10px; }
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
-  <main class="poster" role="img" aria-label="Epic Project promotional poster">
-    <div class="fog"></div>
 
-    <section class="content">
-      <div class="top">
-        <div class="brandMark" aria-hidden="true">
-          <div class="brandInner">
-            <div class="glyphs">
-              <div class="android">
-                <span class="eye left"></span>
-                <span class="eye right"></span>
-              </div>
-              <div class="windows" aria-hidden="true">
-                <span></span><span></span><span></span><span></span>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Background Elements -->
+  <div class="fixed inset-0 grid-lines pointer-events-none"></div>
+  <div class="orb top-[-100px] left-[-100px]"></div>
+  <div class="orb bottom-[-100px] right-[-100px]" style="animation-delay: -5s; background: var(--accent);"></div>
 
-        <h1 class="title">Epic Project</h1>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+    <div class="flex items-center gap-3 group cursor-pointer">
+      <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform">
+        <span class="font-bold text-xl">E</span>
       </div>
+      <span class="font-bold text-xl tracking-tight">Epic<span class="text-indigo-400">Project</span></span>
+    </div>
+    <div class="hidden md:flex gap-8">
+      <a href="#" class="nav-link">Android</a>
+      <a href="#" class="nav-link">Windows</a>
+      <a href="#" class="nav-link">Community</a>
+      <a href="#" class="nav-link">Open Source</a>
+    </div>
+    <button class="bg-white text-black px-6 py-2.5 rounded-full font-semibold hover:bg-indigo-500 hover:text-white transition-all shadow-lg shadow-white/5">
+      Join Lab
+    </button>
+  </nav>
 
-      <div class="subtitle">
-        <span>Free Android &amp; Windows</span>
-        <span>Apps for All</span>
+  <!-- Hero Section -->
+  <main class="relative pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-20 hero-gradient py-10">
+      <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full text-indigo-400 text-sm font-semibold mb-6">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+        </span>
+        V2.5 LATEST RELEASE
       </div>
-
-      <p class="desc">
-        Epic Project is a non-profit, open-source initiative building practical Android and Windows apps for everyday life.
-        We believe in free software, community collaboration, and no copyright restrictions.
+      <h1 class="text-6xl md:text-8xl font-extrabold mb-8 tracking-tighter leading-none">
+        Crafting Digital <br/>
+        <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent glow-text">Freedom.</span>
+      </h1>
+      <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+        Epic Project is a non-profit, open-source collective building practical apps for 
+        everyday life. No copyright, no tracking, just pure utility.
       </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button class="px-8 py-4 bg-indigo-600 rounded-2xl font-bold text-lg hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+          Explore Apps
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+        </button>
+        <button class="px-8 py-4 glass rounded-2xl font-bold text-lg flex items-center gap-3">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Source Code
+        </button>
+      </div>
+    </div>
 
-      <div class="hero">
-        <div class="doodles" aria-hidden="true">
-          <div class="rect r1"></div>
-          <div class="rect r2"></div>
-          <div class="rect r3"></div>
-          <div class="dot"></div>
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Feature 1: Android -->
+      <div class="md:col-span-2 glass p-8 rounded-[2rem] overflow-hidden relative group">
+        <div class="relative z-10">
+          <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-2xl flex items-center justify-center mb-6">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5517 0 .9999.4482.9999.9993 0 .5511-.4482.9997-.9999.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5517 0 .9999.4482.9999.9993 0 .5511-.4482.9997-.9999.9997m11.4045-6.021l1.9973-3.4592a.416.416 0 00-.1521-.5674.416.416 0 00-.5681.1521l-2.0223 3.503c-1.5312-.6973-3.2355-1.0873-5.0358-1.0873s-3.5046.39-5.0358 1.0873l-2.0223-3.503a.4165.4165 0 00-.5681-.1521.416.416 0 00-.1521.5674l1.9973 3.4592C3.1587 11.2334 1.25 14.383 1.25 18h21.5c0-3.617-1.9087-6.7666-5.0935-8.6796z"/></svg>
+          </div>
+          <h3 class="text-3xl font-bold mb-4">Mobile Excellence</h3>
+          <p class="text-gray-400 max-w-sm">Optimized Android applications that respect your privacy and battery life. No ads, just performance.</p>
         </div>
-
-        <div class="people">
-          <div class="person left">
-            <div class="hair"></div>
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="laptop"></div>
-          </div>
-
-          <div class="person center">
-            <div class="bubble android" title="Android" aria-hidden="true">
-              <div class="miniAndroid"></div>
-            </div>
-            <div class="hair" style="background: rgba(0,0,0,0.25);"></div>
-            <div class="head" style="background:#f2c7a6;"></div>
-            <div class="body" style="background: rgba(255,255,255,0.16);"></div>
-            <div class="laptop"></div>
-          </div>
-
-          <div class="person right">
-            <div class="bubble win" title="Windows" aria-hidden="true">
-              <div class="miniWin">
-                <span></span><span></span><span></span><span></span>
-              </div>
-            </div>
-            <div class="hair" style="background: rgba(0,0,0,0.30); left:14px;"></div>
-            <div class="head" style="left:16px;"></div>
-            <div class="body"></div>
-            <div class="phone"></div>
-          </div>
+        <div class="absolute right-[-50px] bottom-[-20px] opacity-10 group-hover:opacity-20 transition-opacity">
+          <div class="w-64 h-96 bg-white/20 rounded-3xl rotate-12 floating"></div>
         </div>
       </div>
 
-      <div class="ctaWrap">
-        <button class="cta" id="learnMoreBtn">Learn More</button>
+      <!-- Feature 2: Windows -->
+      <div class="glass p-8 rounded-[2rem] flex flex-col justify-between group">
+        <div>
+          <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.401h-13.051M0 12.6h9.75v9.451L0 20.699m10.949-7.948H24V24l-13.051-1.8z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Desktop Suite</h3>
+          <p class="text-gray-400">Native Windows tools designed for productivity and minimalism.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <span class="text-sm font-semibold text-blue-400">Windows 10/11 Optimized</span>
+        </div>
       </div>
 
-      <div class="bottomSpace"></div>
-    </section>
+      <!-- Feature 3: Non-Profit -->
+      <div class="glass p-8 rounded-[2rem] group border-indigo-500/30">
+        <h3 class="text-2xl font-bold mb-4">Non-Profit</h3>
+        <p class="text-gray-400 mb-6">We don't sell data. We don't have investors. We only have users like you.</p>
+        <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+          <div class="h-full bg-indigo-500 w-[100%]"></div>
+        </div>
+        <p class="text-xs mt-2 text-indigo-400">100% Community Funded</p>
+      </div>
+
+      <!-- Feature 4: Open Source -->
+      <div class="md:col-span-2 glass p-8 rounded-[2rem] flex items-center justify-between bg-gradient-to-br from-indigo-500/5 to-purple-500/5">
+        <div class="max-w-md">
+          <h3 class="text-3xl font-bold mb-4">Open Source</h3>
+          <p class="text-gray-400">Every line of code is available for audit, contribution, and improvement on GitHub.</p>
+        </div>
+        <div class="hidden sm:grid grid-cols-3 gap-3">
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">JS</div>
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">C#</div>
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">PY</div>
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">KT</div>
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">RS</div>
+          <div class="w-12 h-12 glass rounded-lg flex items-center justify-center font-bold text-xs">TS</div>
+        </div>
+      </div>
+
+    </div>
   </main>
 
+  <footer class="py-12 border-t border-white/5 px-8 text-center text-gray-500 text-sm">
+    <p>© 2026 Epic Project Initiative. Released under the MIT License.</p>
+    <div class="flex justify-center gap-6 mt-4">
+      <a href="#" class="hover:text-white transition-colors">Documentation</a>
+      <a href="#" class="hover:text-white transition-colors">Privacy</a>
+      <a href="#" class="hover:text-white transition-colors">Changelog</a>
+    </div>
+  </footer>
+
   <script>
-    // Simple CTA action (edit to your link)
-    document.getElementById("learnMoreBtn").addEventListener("click", () => {
-      // Put your project URL here:
-      const url = "https://example.com";
-      // If you don't want navigation, replace with your own JS.
-      window.open(url, "_blank", "noopener,noreferrer");
+    // Smooth scrolling & hover effects
+    document.addEventListener('mousemove', (e) => {
+      const orbs = document.querySelectorAll('.orb');
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      orbs.forEach((orb, index) => {
+        const speed = (index + 1) * 0.05;
+        const x = (window.innerWidth / 2 - mouseX) * speed;
+        const y = (window.innerHeight / 2 - mouseY) * speed;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+      });
     });
 
-    // Optional: allow quick theme tweak via query (?theme=blue) etc.
-    // Example: index.html?bg1=%231766ff&bg2=%23ff3a2e
-    (() => {
-      const p = new URLSearchParams(location.search);
-      const bg1 = p.get("bg1");
-      const bg2 = p.get("bg2");
-      if (bg1) document.documentElement.style.setProperty("--bg1", decodeURIComponent(bg1));
-      if (bg2) document.documentElement.style.setProperty("--bg2", decodeURIComponent(bg2));
-    })();
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.glass').forEach(el => {
+      el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
