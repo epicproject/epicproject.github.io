@@ -1,183 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html lang="en-GB">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — HTTP Server Pro</title>
-<meta name="description" content="Privacy policy for the HTTP Server Pro Android app.">
+<title>Privacy Policy — Offline POS</title>
 <style>
   :root {
-    --bg: #ffffff; --ink: #1c1e21; --dim: #5f6368; --line: #e4e6eb;
-    --accent: #0866ff; --soft: #f0f4ff; --warn: #fff6e0; --warn-line: #f7b928;
+    --bg: #ffffff; --ink: #16181d; --dim: #5a6070;
+    --line: #e3e5ee; --accent: #3561fd; --panel: #f6f7fb;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #18191a; --ink: #e4e6eb; --dim: #b0b3b8; --line: #3e4042;
-      --accent: #5b9bff; --soft: #16283f; --warn: #33290c; --warn-line: #b8891d;
+      --bg: #0f1116; --ink: #e8eaf2; --dim: #9aa0b4;
+      --line: #262a36; --accent: #7fa0ff; --panel: #161922;
     }
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
-    -webkit-text-size-adjust: 100%;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 20px 80px;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
-  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.3px; }
-  .meta { color: var(--dim); margin: 0 0 28px; font-size: 14px; }
-  h2 {
-    font-size: 20px; margin: 40px 0 10px; padding-top: 18px;
-    border-top: 1px solid var(--line); scroll-margin-top: 16px;
-  }
-  h3 { font-size: 16px; margin: 20px 0 6px; }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.4px; }
+  h2 { font-size: 20px; margin: 38px 0 10px; letter-spacing: -0.2px; }
+  h3 { font-size: 16px; margin: 24px 0 6px; color: var(--accent); }
   p, li { color: var(--ink); }
-  ul { padding-left: 22px; }
-  li { margin: 4px 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
   a { color: var(--accent); }
-  code { font: 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--soft); padding: 1px 5px; border-radius: 5px; }
-  .summary { background: var(--soft); border-radius: 14px; padding: 16px 20px; margin: 0 0 8px; }
-  .summary p { margin: 6px 0; }
-  .note { background: var(--warn); border-left: 4px solid var(--warn-line); border-radius: 10px; padding: 12px 16px; margin: 14px 0; }
-  nav ol { columns: 2; column-gap: 28px; padding-left: 20px; margin: 10px 0 0; font-size: 15px; }
-  @media (max-width: 560px) { nav ol { columns: 1; } h1 { font-size: 26px; } }
-  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 10px 0; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--dim); font-weight: 600; }
-  footer { color: var(--dim); font-size: 14px; margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; }
+  code {
+    background: var(--panel); padding: 1px 5px; border-radius: 4px;
+    font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--dim); font-size: 13px; text-transform: uppercase;
+       letter-spacing: 0.4px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  @media (max-width: 520px) {
+    body { padding: 28px 16px 60px; }
+    h1 { font-size: 25px; }
+    table, th, td { font-size: 14px; }
+    th, td { padding: 8px 8px; }
+  }
 </style>
-</head>
-<body>
 <main>
-  <h1>Privacy Policy — HTTP Server Pro</h1>
-  <p class="meta">Effective date: 30 September 2026 · Applies to the Android app <code>http.server.pro</code></p>
-
-  <div class="summary">
-    <p><strong>In short:</strong> HTTP Server Pro runs a web server on your own phone. The developer runs no servers for this app and collects no data from it — no accounts, no analytics, no advertising, no crash reporting.</p>
-    <p>Data leaves your phone only when <em>you</em> use a feature that needs to: a public tunnel, Cloud Share, or the AI website builder. Each is described below.</p>
-  </div>
-
-  <nav aria-label="Contents">
-    <ol>
-      <li><a href="#who">Who we are</a></li>
-      <li><a href="#collect">What the developer collects</a></li>
-      <li><a href="#device">What stays on your device</a></li>
-      <li><a href="#backup">Android backup</a></li>
-      <li><a href="#folders">Files and folders you choose</a></li>
-      <li><a href="#permissions">Permissions</a></li>
-      <li><a href="#tunnel">Public tunnels</a></li>
-      <li><a href="#cloud">Cloud Share and its Monitor</a></li>
-      <li><a href="#ai">AI website builder (Gemini)</a></li>
-      <li><a href="#local">LAN upload and WebSocket</a></li>
-      <li><a href="#logs">Server logs</a></li>
-      <li><a href="#retention">Keeping and deleting data</a></li>
-      <li><a href="#security">Security</a></li>
-      <li><a href="#children">Children</a></li>
-      <li><a href="#responsibility">Your responsibility</a></li>
-      <li><a href="#changes">Changes and contact</a></li>
-    </ol>
-  </nav>
-
-  <h2 id="who">1. Who we are</h2>
-  <p>HTTP Server Pro is published on Google Play by an independent developer ("the developer", "we"). You can contact the developer at <a href="mailto:av.n@aol.com">av.n@aol.com</a>.</p>
-
-  <h2 id="collect">2. What the developer collects</h2>
-  <p><strong>Nothing, automatically.</strong> The app has no account system, contains no analytics, advertising or crash-reporting SDKs, and does not send your files, settings or usage to the developer. There is no developer-operated server for it to send anything to.</p>
-  <p>The developer receives information only if you choose to email it — for example when you report an AI reply and leave "Also email the report to the developer" ticked (see <a href="#ai">section 9</a>). That email is used only to review what you reported.</p>
-
-  <h2 id="device">3. What stays on your device</h2>
-  <p>Everything you create in the app is kept in the app's private storage, which other apps cannot read:</p>
-  <ul>
-    <li>website files (the document root) and your nginx configuration, hosts and routes;</li>
-    <li>TLS certificates and private keys you add;</li>
-    <li>server access and error logs;</li>
-    <li>your settings, including the app name and look you design, your language, and a Gemini API key if you enter one;</li>
-    <li>Cloud Share files, if you keep them in app storage rather than a folder you picked;</li>
-    <li>AI content reports you file (a local record of the report).</li>
-  </ul>
-
-  <h2 id="backup">4. Android backup</h2>
-  <p>If Android backup is turned on for your Google account, Android may include some of the app's data in that backup, which Google stores under your account. The app limits this to:</p>
-  <table>
-    <tr><th>Backup type</th><th>Included</th><th>Never included</th></tr>
-    <tr><td>Cloud backup</td><td>settings (<code>profile.json</code>), website files</td><td>TLS private keys, logs, runtime and temporary files</td></tr>
-    <tr><td>Direct phone-to-phone transfer</td><td>settings, website files, TLS certificates and keys</td><td>logs, runtime and temporary files</td></tr>
-  </table>
-  <p>Settings include your Gemini API key if you entered one. You can turn backup off in Android's settings.</p>
-
-  <h2 id="folders">5. Files and folders you choose</h2>
-  <ul>
-    <li><strong>Uploading files or folders:</strong> Android's file picker gives the app access only to what you select; the app copies it into the document root and keeps no further access.</li>
-    <li><strong>Device Sync and the Cloud Share folder:</strong> if you pick a folder for these features, Android grants the app ongoing access to <em>that one folder</em>, so it can keep working after a restart. The app reads and writes only inside it. You can revoke this at any time by choosing another folder, turning the feature off, or clearing the app's data.</li>
-  </ul>
-  <p>The app does not request location, contacts, camera, microphone, phone, SMS or broad storage permissions.</p>
-
-  <h2 id="permissions">6. Permissions</h2>
-  <table>
-    <tr><th>Permission</th><th>Why</th></tr>
-    <tr><td>Internet, network state, Wi-Fi state</td><td>serve pages, open tunnels, show your LAN address</td></tr>
-    <tr><td>Foreground service (special use)</td><td>keep the web server running while the app is in the background, with a visible notification</td></tr>
-    <tr><td>Notifications</td><td>show that ongoing server notification and its Stop action</td></tr>
-    <tr><td>Wake lock</td><td>keep serving while the screen is off</td></tr>
-    <tr><td>Run at startup</td><td>only if you turn on start-on-boot</td></tr>
-  </table>
-
-  <h2 id="tunnel">7. Public tunnels</h2>
-  <div class="note">Opening a tunnel makes your server reachable from the public internet. Please read this part carefully.</div>
-  <p>When you start a tunnel (you are asked to agree to a warning first):</p>
-  <ul>
-    <li>anything in your document root can be fetched by anyone who has the address;</li>
-    <li>your traffic passes through the tunnel provider you chose — <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> for Cloudflare tunnels, or Pinggy for Pinggy tunnels — and their handling of it is governed by their own terms and privacy policies;</li>
-    <li>visitors use your device's bandwidth, battery and mobile data.</li>
-  </ul>
-  <p>Quick-tunnel addresses change every time the tunnel restarts and come with no uptime promise.</p>
-
-  <h2 id="cloud">8. Cloud Share and its Monitor</h2>
-  <p>Cloud Share lets people you give the link to download files from your <em>Send</em> folder and upload files into your <em>Received</em> folder. It is off until you switch it on, and it works only while a tunnel is running.</p>
-  <h3>What the Monitor records about visitors</h3>
-  <p>So you can see who is using your share, the app records, <strong>on your device only</strong>, for each device that opens it:</p>
-  <ul>
-    <li>its IP address and the information its browser sends with every request: browser and operating system (read from the User-Agent), preferred languages and the referring page;</li>
-    <li>information the share page reads in the visitor's browser without any permission prompt: screen and window size, pixel ratio, time zone, platform, number of CPU cores, approximate memory, touch support, connection type and speed, and light or dark mode;</li>
-    <li>activity counts: pages opened, files downloaded and uploaded, and data transferred.</li>
-  </ul>
-  <p>These records are held in memory on your phone, are never sent to the developer, and are erased when the app's process ends. A visitor sees their own record and overall totals on the share's Monitor tab, never another visitor's details. If you share the link with others, you are responsible for letting them know their visit is logged.</p>
-
-  <h2 id="ai">9. AI website builder (Gemini)</h2>
-  <p>The builder is optional and uses <strong>your own</strong> Gemini API key; no key is included in the app. Only when you send a request does the app contact Google's Gemini API, sending:</p>
-  <ul>
-    <li>the text of your request;</li>
-    <li>the <em>names</em> of up to 120 files already in your document root (not their contents), so the model can edit rather than duplicate them;</li>
-    <li>your API key, which Google uses to identify your account.</li>
-  </ul>
-  <p>The reply is written into your document root. Google's processing of this data is governed by the <a href="https://ai.google.dev/gemini-api/terms">Gemini API Terms</a> and <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Your key is stored on your device only.</p>
-  <h3>Reporting AI replies</h3>
-  <p>Every AI reply has a Report option. Reporting hides the reply, stores a record of the report on your device, can optionally delete the files that reply wrote, and can optionally open your email app with the report (your request and the reply) addressed to the developer. Nothing is sent unless you send that email.</p>
-
-  <h2 id="local">10. LAN upload and WebSocket</h2>
-  <ul>
-    <li><strong>LAN upload</strong> opens a temporary, token-protected upload page on your local network so another of your devices can send files to the app. The optional internet mode uses a temporary tunnel (see <a href="#tunnel">section 7</a>).</li>
-    <li><strong>The WebSocket server</strong> relays messages between connected clients through your own server. Messages are not stored.</li>
-  </ul>
-
-  <h2 id="logs">11. Server logs</h2>
-  <p>nginx writes access and error logs to app-private storage. They contain visitors' IP addresses, requested paths, status codes and User-Agent strings. They are never uploaded and are excluded from cloud backup. You can clear them from the Console at any time.</p>
-
-  <h2 id="retention">12. Keeping and deleting data</h2>
-  <p>All data is kept on your device until you delete it. You can delete website files, Cloud Share files, logs and settings inside the app. Clearing the app's data in Android settings, or uninstalling the app, deletes everything the app stored on the device. Copies in a folder you picked for Device Sync or Cloud Share are your own files and remain until you delete them. Data in an Android backup follows your Google account's backup settings.</p>
-
-  <h2 id="security">13. Security</h2>
-  <p>The app keeps its data in Android's app-private storage, serves public traffic over the tunnel provider's HTTPS, protects LAN uploads with a one-time token, and never sends TLS private keys to the cloud. No system is perfectly secure: do not place confidential files in your document root or Send folder while a tunnel is running.</p>
-
-  <h2 id="children">14. Children</h2>
-  <p>HTTP Server Pro is a developer tool intended for adults. It is not directed at children, and the developer does not knowingly collect personal information from anyone.</p>
-
-  <h2 id="responsibility">15. Your responsibility</h2>
-  <p>You decide what your server publishes and who can reach it. You are responsible for the content you host or share, for complying with the laws that apply to you, and for the terms of any tunnel provider and of the Gemini API that you use.</p>
-
-  <h2 id="changes">16. Changes and contact</h2>
-  <p>If this policy changes, the new version will be published at this address with a new effective date, and material changes will be shown in the app. Questions or requests: <a href="mailto:av.n@aol.com">av.n@aol.com</a>.</p>
-
-  <footer>© 2026 HTTP Server Pro. nginx is a trademark of F5, Inc.; this app bundles an unmodified nginx build and is not affiliated with F5.</footer>
+<h1>Privacy Policy — Offline POS</h1>
+<p><strong>Last updated: 12 October 2026</strong></p>
+<p>Offline POS (<code>offline.pos</code>) is a point-of-sale app for small shops. This policy explains what the app stores, what it does not, and the few occasions on which anything you have entered can leave your phone.</p>
+<p>It is written to describe what the software actually does. Where something could be read two ways, the stricter reading is the one meant.</p>
+<hr>
+<h2>The short version</h2>
+<ul>
+<li>The app has <strong>no accounts and no sign-in</strong>. You never give us an identity.</li>
+<li>It contains <strong>no analytics, no advertising and no crash reporting</strong>. There is no code in it that reports anything about you or your shop to us.</li>
+<li><strong>We operate no server.</strong> There is nowhere for your data to be sent to us, and we could not read it if you tried.</li>
+<li>Everything you enter — products, sales, customers, invoices, photos — stays in the app&#x27;s private storage on your phone.</li>
+<li>Data leaves your phone <strong>only when you press something that sends it</strong>, and then only to where you chose.</li>
+</ul>
+<hr>
+<h2>What the app keeps on your phone</h2>
+<p>All of it is held in the app&#x27;s own private storage, which other apps cannot read:</p>
+<table><thead><tr><th>What</th><th>Examples</th></tr></thead><tbody>
+<tr><td>Shop details</td><td>shop name, owner name, address, phone, email, PAN/VAT, logo, owner photo, signature, stamp</td></tr>
+<tr><td>Products</td><td>names, prices, cost, stock, categories, barcodes, photos</td></tr>
+<tr><td>Customers</td><td>names, phone numbers, addresses, balances owed</td></tr>
+<tr><td>Sales and purchases</td><td>invoices, line items, discounts, taxes, payments</td></tr>
+<tr><td>Settings</td><td>language, currency, printing and scanning preferences</td></tr>
+<tr><td>Security</td><td>your PIN, stored only as a salted PBKDF2-SHA256 hash, and your Shop Key</td></tr>
+<tr><td>Activity log</td><td>a record of what was done in the app, so an owner can review a worker&#x27;s shift</td></tr>
+</tbody></table>
+<p>None of this is transmitted anywhere by the app on its own.</p>
+<hr>
+<h2>When data can leave your phone</h2>
+<p>There are five, and each one happens only because you chose it.</p>
+<h3>1. Wi-Fi share (local network)</h3>
+<p>The app can start a small web server so another device on the <strong>same Wi-Fi</strong> can download a backup, an invoice or a product list. The data travels over your own network and does not reach the internet. The server stops when you stop it, when the app closes, or after the expiry you set.</p>
+<h3>2. Share over the internet (Cloudflare Tunnel)</h3>
+<p>If, and only if, you turn on <em>Share over the internet</em>, the app opens a temporary tunnel using Cloudflare&#x27;s service so a device <strong>not</strong> on your Wi-Fi can reach that same page. While the tunnel is open the data you are sharing passes through <strong>Cloudflare&#x27;s network</strong>, which is a third party with its own privacy policy (<a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>). The link is temporary and one-use, and the tunnel closes when you close it.</p>
+<p>If you never use this feature, the app never contacts the internet for it.</p>
+<h3>3. Cloud backup</h3>
+<p>If you fill in a cloud server of your own — your WebDAV, Nextcloud or similar — the app can upload a backup file to <strong>that server</strong>. It is your server; we have no access to it and never see the address or the password. The backup is encrypted before it is uploaded (see <em>Security</em> below).</p>
+<h3>4. Bluetooth</h3>
+<p>The app sends receipts to a <strong>thermal printer</strong> you have paired, and can send a single invoice to another phone running the companion Invoice app. Both are direct device-to-device transfers. Nothing is relayed through any server.</p>
+<h3>5. Whatever you share yourself</h3>
+<p>Saving a PDF, sharing a receipt to WhatsApp, saving a backup file to your Downloads folder, or showing an invoice as a QR code on screen all hand the data to whatever you chose. Once it leaves the app it is governed by the policy of wherever it went.</p>
+<hr>
+<h2>Permissions, and why each one exists</h2>
+<table><thead><tr><th>Permission</th><th>Why</th></tr></thead><tbody>
+<tr><td><strong>Camera</strong></td><td>To read barcodes and QR codes. Frames are decoded in memory and dropped. No photo is taken, stored or sent.</td></tr>
+<tr><td><strong>Bluetooth</strong></td><td>To find and connect to your receipt printer, and to send an invoice to the companion app on another phone.</td></tr>
+<tr><td><strong>Internet / network state</strong></td><td>For the Wi-Fi share, the optional internet tunnel and the optional cloud backup. Nothing uses it otherwise.</td></tr>
+<tr><td><strong>Vibrate</strong></td><td>Feedback when a barcode scans.</td></tr>
+<tr><td><strong>Storage</strong> (Android 9 and older only)</td><td>To save backup files where you can find them. Newer versions of Android do not need it and it is not requested.</td></tr>
+</tbody></table>
+<p>You can refuse any of them. The app will tell you which feature stops working and the rest carries on.</p>
+<hr>
+<h2>The camera and barcode reading</h2>
+<p>Scanning runs entirely <strong>on your device</strong>, using an on-device barcode library bundled inside the app. Camera frames are never uploaded and never written to storage. The app does not use face recognition and does not identify people.</p>
+<hr>
+<h2>The companion app</h2>
+<p><em>Invoice for Offline POS</em> is a separate app that receives and stores invoices. It holds no internet permission at all. Invoices reach it over Bluetooth, by scanning a QR code off the till&#x27;s screen, or through a direct hand-off between the two apps on one phone, protected so only our own signed apps can send. Everything it receives stays on that phone.</p>
+<hr>
+<h2>Security</h2>
+<ul>
+<li>Your <strong>PIN</strong> is never stored. Only a salted PBKDF2-HMAC-SHA256 hash is kept, and wrong attempts are rate-limited — 3 wrong attempts means a wait, 5 means a longer one, 10 requires the Shop Key.</li>
+<li><strong>Backups are encrypted</strong> with AES-256-GCM using a key derived from your Shop Key, so a backup file on a cloud server or a memory card is unreadable without it. Backup files made by older versions of the app are not encrypted; replace them if they matter.</li>
+<li><strong>We cannot recover your Shop Key.</strong> We do not have it. Lose it and an encrypted backup cannot be opened by anyone, including us.</li>
+<li>App data is held in Android&#x27;s private app storage and is not readable by other apps on the phone.</li>
+</ul>
+<hr>
+<h2>Keeping and deleting your data</h2>
+<p>The app keeps your data until you delete it. You are in control of all of it:</p>
+<ul>
+<li>Delete individual records inside the app.</li>
+<li><strong>Uninstalling the app erases everything it holds.</strong></li>
+<li>Backup files you created yourself live wherever you put them — your Downloads folder, a memory card, your cloud server — and are not removed by uninstalling. Delete those yourself if you want them gone.</li>
+</ul>
+<p>Because we hold nothing, there is nothing for us to delete on your behalf and no request you need to make to us.</p>
+<hr>
+<h2>Children</h2>
+<p>The app is a tool for running a shop and is not directed at children. It does not knowingly collect anything from anyone, of any age.</p>
+<hr>
+<h2>Changes to this policy</h2>
+<p>If the app gains a feature that changes any of the above, this policy is updated before that version is released, and the date at the top changes with it.</p>
+<hr>
+<h2>Contact</h2>
+<p>Questions about this policy, or about anything the app does with your data:</p>
+<p><strong>0.epicproject@gmail.com</strong></p>
+<p>Offline POS is published by <strong>Epic Project</strong>, a non-profit open-source initiative building practical Android and Windows apps for everyday life.</p>
 </main>
-</body>
 </html>
