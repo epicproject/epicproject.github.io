@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - Php Mysql Server</title>
+<style>
+  body{margin:0;background:#0a111a;color:#e6edf3;font:16px/1.65 -apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  main{max-width:780px;margin:0 auto;padding:32px 20px 70px}
+  h1{font-size:30px;margin:0 0 4px}
+  h2{margin-top:34px;font-size:20px;color:#2dd4bf}
+  .meta{color:#8a99aa;margin-bottom:24px}
+  a{color:#4da3ff}
+  li{margin:6px 0}
+  code{background:#16212e;padding:1px 6px;border-radius:5px}
+</style>
+</head>
+<body>
+<main>
+<h1>Privacy Policy</h1>
+<div class="meta">App: <b>Php Mysql Server</b> (<code>com.php.mysql.server</code>) &middot; Effective date: 13 October 2026</div>
+
+<p>Php Mysql Server ("the app") lets you run a local PHP web server and a MySQL-compatible (MariaDB) database on your own Android device. This policy explains what information the app handles. In short: <b>the app does not collect, sell or share your personal data, and it contains no ads, analytics or tracking.</b></p>
+
+<h2>1. Information we collect</h2>
+<p>We do not collect any information. The developer has no servers that receive data from the app, and the app has no user accounts, sign-in, advertising SDKs, analytics SDKs or crash-reporting SDKs.</p>
+
+<h2>2. Data stored on your device</h2>
+<p>Everything you create with the app (web project files, databases, settings, logs and backups) is stored locally in the app's private storage on your device. It never leaves your device unless you choose to expose it (see sections 3 and 4). Uninstalling the app deletes this data. You can export your project files through the Android Files app and create database backups inside the app.</p>
+
+<h2>3. Local network access</h2>
+<p>By default the servers listen only on the device itself (<code>127.0.0.1</code>). If you switch on "Expose to network" in the app settings, other devices on the same Wi-Fi network can reach your PHP server and database port. You are responsible for choosing a root password and for the content you serve.</p>
+
+<h2>4. Optional public URL (Cloudflare Tunnel)</h2>
+<p>The app can optionally create a temporary public web address using Cloudflare's free "Quick Tunnel" service (<code>trycloudflare.com</code>). When you enable this feature, the app connects to Cloudflare, and internet traffic to that address is relayed through Cloudflare to the web server running on your device. This means that:</p>
+<ul>
+  <li>anyone who knows the generated URL can open the website you are serving;</li>
+  <li>Cloudflare processes the traffic that passes through its network according to <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's Privacy Policy</a>;</li>
+  <li>the developer of this app does not receive, see or store that traffic.</li>
+</ul>
+<p>The tunnel is off unless you turn it on, and it stops when you stop the PHP server or tap "Close tunnel". phpMyAdmin is automatically protected by a login while the tunnel or network exposure is active.</p>
+
+<h2>5. Permissions used</h2>
+<ul>
+  <li><b>Internet / network state / Wi-Fi state</b> &ndash; to run the local servers, show your LAN address and (optionally) open the Cloudflare tunnel.</li>
+  <li><b>Foreground service</b> &ndash; to keep the servers running while the app is in the background; a notification is shown while they run.</li>
+  <li><b>Notifications</b> &ndash; to show that status notification.</li>
+  <li><b>Wake lock</b> &ndash; to keep the servers responsive while running.</li>
+  <li><b>Vibrate</b> &ndash; for optional haptic feedback.</li>
+  <li><b>Request ignore battery optimizations</b> &ndash; optional, so Android does not stop your servers; you decide whether to allow it.</li>
+</ul>
+<p>The app does not access your contacts, camera, microphone, location, photos or other personal data. Files are only read when you explicitly pick them with the Android file picker (for example when importing project files).</p>
+
+<h2>6. Third-party software</h2>
+<p>The app bundles open-source software that runs entirely on your device: PHP, MariaDB, phpMyAdmin and Cloudflare's <code>cloudflared</code> client. These components are used under their respective open-source licenses.</p>
+
+<h2>7. Children</h2>
+<p>The app is a developer tool and is not directed to children under 13. We do not knowingly collect data from children.</p>
+
+<h2>8. Security</h2>
+<p>Data is kept in the app's sandboxed storage. If you make your server reachable from other devices or the internet, please set a strong MySQL root password and do not store sensitive data in a publicly reachable site.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>If this policy changes, the updated version will be published at this address with a new effective date.</p>
+
+<h2>10. Contact</h2>
+<p>Questions about this policy can be raised by opening an issue on the GitHub repository that hosts this page.</p>
+</main>
+</body>
+</html>
