@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Offline POS</title>
+<style>
+  :root {
+    --bg: #ffffff; --ink: #16181d; --dim: #5a6070;
+    --line: #e3e5ee; --accent: #3561fd; --panel: #f6f7fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1116; --ink: #e8eaf2; --dim: #9aa0b4;
+      --line: #262a36; --accent: #7fa0ff; --panel: #161922;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 20px 80px;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.4px; }
+  h2 { font-size: 20px; margin: 38px 0 10px; letter-spacing: -0.2px; }
+  h3 { font-size: 16px; margin: 24px 0 6px; color: var(--accent); }
+  p, li { color: var(--ink); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+  a { color: var(--accent); }
+  code {
+    background: var(--panel); padding: 1px 5px; border-radius: 4px;
+    font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--dim); font-size: 13px; text-transform: uppercase;
+       letter-spacing: 0.4px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  @media (max-width: 520px) {
+    body { padding: 28px 16px 60px; }
+    h1 { font-size: 25px; }
+    table, th, td { font-size: 14px; }
+    th, td { padding: 8px 8px; }
+  }
+</style>
+<main>
+<h1>Privacy Policy — Offline POS</h1>
+<p><strong>Last updated: 12 October 2026</strong></p>
+<p>Offline POS (<code>offline.pos</code>) is a point-of-sale app for small shops. This policy explains what the app stores, what it does not, and the few occasions on which anything you have entered can leave your phone.</p>
+<p>It is written to describe what the software actually does. Where something could be read two ways, the stricter reading is the one meant.</p>
+<hr>
+<h2>The short version</h2>
+<ul>
+<li>The app has <strong>no accounts and no sign-in</strong>. You never give us an identity.</li>
+<li>It contains <strong>no analytics, no advertising and no crash reporting</strong>. There is no code in it that reports anything about you or your shop to us.</li>
+<li><strong>We operate no server.</strong> There is nowhere for your data to be sent to us, and we could not read it if you tried.</li>
+<li>Everything you enter — products, sales, customers, invoices, photos — stays in the app&#x27;s private storage on your phone.</li>
+<li>Data leaves your phone <strong>only when you press something that sends it</strong>, and then only to where you chose.</li>
+</ul>
+<hr>
+<h2>What the app keeps on your phone</h2>
+<p>All of it is held in the app&#x27;s own private storage, which other apps cannot read:</p>
+<table><thead><tr><th>What</th><th>Examples</th></tr></thead><tbody>
+<tr><td>Shop details</td><td>shop name, owner name, address, phone, email, PAN/VAT, logo, owner photo, signature, stamp</td></tr>
+<tr><td>Products</td><td>names, prices, cost, stock, categories, barcodes, photos</td></tr>
+<tr><td>Customers</td><td>names, phone numbers, addresses, balances owed</td></tr>
+<tr><td>Sales and purchases</td><td>invoices, line items, discounts, taxes, payments</td></tr>
+<tr><td>Settings</td><td>language, currency, printing and scanning preferences</td></tr>
+<tr><td>Security</td><td>your PIN, stored only as a salted PBKDF2-SHA256 hash, and your Shop Key</td></tr>
+<tr><td>Activity log</td><td>a record of what was done in the app, so an owner can review a worker&#x27;s shift</td></tr>
+</tbody></table>
+<p>None of this is transmitted anywhere by the app on its own.</p>
+<hr>
+<h2>When data can leave your phone</h2>
+<p>There are five, and each one happens only because you chose it.</p>
+<h3>1. Wi-Fi share (local network)</h3>
+<p>The app can start a small web server so another device on the <strong>same Wi-Fi</strong> can download a backup, an invoice or a product list. The data travels over your own network and does not reach the internet. The server stops when you stop it, when the app closes, or after the expiry you set.</p>
+<h3>2. Share over the internet (Cloudflare Tunnel)</h3>
+<p>If, and only if, you turn on <em>Share over the internet</em>, the app opens a temporary tunnel using Cloudflare&#x27;s service so a device <strong>not</strong> on your Wi-Fi can reach that same page. While the tunnel is open the data you are sharing passes through <strong>Cloudflare&#x27;s network</strong>, which is a third party with its own privacy policy (<a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>). The link is temporary and one-use, and the tunnel closes when you close it.</p>
+<p>If you never use this feature, the app never contacts the internet for it.</p>
+<h3>3. Cloud backup</h3>
+<p>If you fill in a cloud server of your own — your WebDAV, Nextcloud or similar — the app can upload a backup file to <strong>that server</strong>. It is your server; we have no access to it and never see the address or the password. The backup is encrypted before it is uploaded (see <em>Security</em> below).</p>
+<h3>4. Bluetooth</h3>
+<p>The app sends receipts to a <strong>thermal printer</strong> you have paired, and can send a single invoice to another phone running the companion Invoice app. Both are direct device-to-device transfers. Nothing is relayed through any server.</p>
+<h3>5. Whatever you share yourself</h3>
+<p>Saving a PDF, sharing a receipt to WhatsApp, saving a backup file to your Downloads folder, or showing an invoice as a QR code on screen all hand the data to whatever you chose. Once it leaves the app it is governed by the policy of wherever it went.</p>
+<hr>
+<h2>Permissions, and why each one exists</h2>
+<table><thead><tr><th>Permission</th><th>Why</th></tr></thead><tbody>
+<tr><td><strong>Camera</strong></td><td>To read barcodes and QR codes. Frames are decoded in memory and dropped. No photo is taken, stored or sent.</td></tr>
+<tr><td><strong>Bluetooth</strong></td><td>To find and connect to your receipt printer, and to send an invoice to the companion app on another phone.</td></tr>
+<tr><td><strong>Internet / network state</strong></td><td>For the Wi-Fi share, the optional internet tunnel and the optional cloud backup. Nothing uses it otherwise.</td></tr>
+<tr><td><strong>Vibrate</strong></td><td>Feedback when a barcode scans.</td></tr>
+<tr><td><strong>Storage</strong> (Android 9 and older only)</td><td>To save backup files where you can find them. Newer versions of Android do not need it and it is not requested.</td></tr>
+</tbody></table>
+<p>You can refuse any of them. The app will tell you which feature stops working and the rest carries on.</p>
+<hr>
+<h2>The camera and barcode reading</h2>
+<p>Scanning runs entirely <strong>on your device</strong>, using an on-device barcode library bundled inside the app. Camera frames are never uploaded and never written to storage. The app does not use face recognition and does not identify people.</p>
+<hr>
+<h2>The companion app</h2>
+<p><em>Invoice for Offline POS</em> is a separate app that receives and stores invoices. It holds no internet permission at all. Invoices reach it over Bluetooth, by scanning a QR code off the till&#x27;s screen, or through a direct hand-off between the two apps on one phone, protected so only our own signed apps can send. Everything it receives stays on that phone.</p>
+<hr>
+<h2>Security</h2>
+<ul>
+<li>Your <strong>PIN</strong> is never stored. Only a salted PBKDF2-HMAC-SHA256 hash is kept, and wrong attempts are rate-limited — 3 wrong attempts means a wait, 5 means a longer one, 10 requires the Shop Key.</li>
+<li><strong>Backups are encrypted</strong> with AES-256-GCM using a key derived from your Shop Key, so a backup file on a cloud server or a memory card is unreadable without it. Backup files made by older versions of the app are not encrypted; replace them if they matter.</li>
+<li><strong>We cannot recover your Shop Key.</strong> We do not have it. Lose it and an encrypted backup cannot be opened by anyone, including us.</li>
+<li>App data is held in Android&#x27;s private app storage and is not readable by other apps on the phone.</li>
+</ul>
+<hr>
+<h2>Keeping and deleting your data</h2>
+<p>The app keeps your data until you delete it. You are in control of all of it:</p>
+<ul>
+<li>Delete individual records inside the app.</li>
+<li><strong>Uninstalling the app erases everything it holds.</strong></li>
+<li>Backup files you created yourself live wherever you put them — your Downloads folder, a memory card, your cloud server — and are not removed by uninstalling. Delete those yourself if you want them gone.</li>
+</ul>
+<p>Because we hold nothing, there is nothing for us to delete on your behalf and no request you need to make to us.</p>
+<hr>
+<h2>Children</h2>
+<p>The app is a tool for running a shop and is not directed at children. It does not knowingly collect anything from anyone, of any age.</p>
+<hr>
+<h2>Changes to this policy</h2>
+<p>If the app gains a feature that changes any of the above, this policy is updated before that version is released, and the date at the top changes with it.</p>
+<hr>
+<h2>Contact</h2>
+<p>Questions about this policy, or about anything the app does with your data:</p>
+<p><strong>0.epicproject@gmail.com</strong></p>
+<p>Offline POS is published by <strong>Epic Project</strong>, a non-profit open-source initiative building practical Android and Windows apps for everyday life.</p>
+</main>
+</html>

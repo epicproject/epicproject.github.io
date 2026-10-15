@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Invoice for Offline POS</title>
+<style>
+  :root {
+    --bg: #ffffff; --ink: #16181d; --dim: #5a6070;
+    --line: #e3e5ee; --accent: #0E7490; --panel: #f3f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1013; --ink: #e8eef2; --dim: #9aabb4;
+      --line: #203038; --accent: #5EEAD4; --panel: #111a20;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 20px 80px;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.4px; }
+  h2 { font-size: 20px; margin: 38px 0 10px; letter-spacing: -0.2px; }
+  h3 { font-size: 16px; margin: 24px 0 6px; color: var(--accent); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+  a { color: var(--accent); }
+  code {
+    background: var(--panel); padding: 1px 5px; border-radius: 4px;
+    font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--dim); font-size: 13px; text-transform: uppercase;
+       letter-spacing: 0.4px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  .note { background: var(--panel); border-left: 3px solid var(--accent);
+          padding: 12px 16px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+  footer { margin-top: 48px; color: var(--dim); font-size: 14px; }
+  @media (max-width: 520px) {
+    body { padding: 28px 16px 60px; }
+    h1 { font-size: 25px; }
+    table, th, td { font-size: 14px; }
+    th, td { padding: 8px 8px; }
+  }
+</style>
+<main>
+
+<h1>Privacy Policy — Invoice for Offline POS</h1>
+<p><strong>Last updated: 15 October 2026</strong></p>
+
+<p><strong>Invoice for Offline POS</strong> (<code>offline.pos.invoice.receiver</code>) is a receipt drawer. It takes the bills a shop's till hands it and keeps them on your phone so you can read, print or save them later. This policy describes what it stores, what it does not, and every way anything can leave your phone.</p>
+
+<p>It is written to describe what the software actually does. Where a sentence could be read two ways, the stricter reading is the one meant.</p>
+
+<hr>
+
+<h2>The short version</h2>
+<ul>
+<li>The app has <strong>no accounts and no sign-in</strong>. You never give us an identity.</li>
+<li>It contains <strong>no analytics, no advertising and no crash reporting</strong>.</li>
+<li><strong>We operate no server</strong>, and <strong>the app does not hold the Android internet permission at all</strong>. It is not that we choose not to send your data anywhere — the app is not able to open a connection to the internet. You can check this yourself: the permission list on the app's Play listing has no "full network access" line.</li>
+<li>Every invoice you receive stays in this app's own storage on your phone.</li>
+<li>Nothing leaves the phone unless you press something that sends it — printing, sharing or saving a PDF — and then only to where you chose.</li>
+<li>Uninstalling the app removes the invoices with it.</li>
+</ul>
+
+<hr>
+
+<h2>What the app holds</h2>
+
+<table>
+  <tr><th>What</th><th>Where it is kept</th><th>Why</th></tr>
+  <tr>
+    <td>Invoices: shop name, phone, address, invoice number, date, items, quantities, prices, totals, tax, discount, amount paid and due, any note or footer, and the customer name and phone if the shop put them on the bill</td>
+    <td>One file per invoice in this app's own folder on your phone</td>
+    <td>So a receipt can be re-opened, re-printed and re-saved later without the till</td>
+  </tr>
+  <tr>
+    <td>One preference: whether you chose the dark look</td>
+    <td>The app's private settings file</td>
+    <td>So the app opens the way you left it</td>
+  </tr>
+  <tr>
+    <td>PDFs you choose to save</td>
+    <td>Your Downloads folder, only when you ask for it (on Android 9 and older, the app's own folder instead)</td>
+    <td>So you can file or send a receipt yourself</td>
+  </tr>
+</table>
+
+<p>The invoice itself is the record — there is no separate database, and nothing is kept about you beyond what the shop wrote on the bill it sent you.</p>
+
+<div class="note">
+<strong>The data in an invoice is the shop's record of a sale.</strong> This app is the drawer it sits in. It does not add to it, does not profile you from it, and does not send it anywhere.
+</div>
+
+<hr>
+
+<h2>Permissions, and what each is really for</h2>
+
+<h3>Bluetooth</h3>
+<p>Used to accept an invoice from a till you have already paired with, and to print to a Bluetooth receipt printer you choose. The app does <strong>not</strong> scan for nearby devices and so never asks for location. The listening socket is open only while the receiving screen is in front of you; it does not run in the background.</p>
+
+<h3>Camera</h3>
+<p>Used only to read the QR code a till shows on its screen. Frames are decoded in memory and dropped. <strong>Nothing is photographed, recorded, stored or sent.</strong> The camera is on only while the scanner screen is open.</p>
+
+<h3>There is no internet permission</h3>
+<p>The app cannot reach the network, so it cannot upload an invoice, phone home, load an advert or report a crash to anybody, including us.</p>
+
+<hr>
+
+<h2>How an invoice reaches this app</h2>
+<p>Three ways, all of them started by a person, never by the app:</p>
+<ul>
+<li><strong>Bluetooth</strong> — a till you are paired with sends the bill directly, phone to phone.</li>
+<li><strong>A QR code</strong> — you point this app's scanner at the code on the till's screen.</li>
+<li><strong>From the till on this same phone</strong> — if Offline POS is installed here too, it can hand a bill straight across. Android allows that only because both apps are signed with the same certificate; no other app on your phone can do it.</li>
+</ul>
+<p>Every invoice carries a checksum, which is re-checked when it arrives and again every time it is opened. That is a correctness measure, not a tracking one: it tells you the figures on the receipt are the ones the shop sent.</p>
+
+<hr>
+
+<h2>When data leaves your phone</h2>
+<p>Only when you act, and only to the place you pick:</p>
+<ul>
+<li><strong>Printing</strong> — the receipt goes to the Bluetooth printer you select, or through Android's own print system to the printer or PDF target you choose there.</li>
+<li><strong>Sharing</strong> — a PDF is handed to the app you pick from the Android share sheet. What that app then does is governed by its own policy, not ours.</li>
+<li><strong>Saving</strong> — a PDF is written into your Downloads folder, where it is yours to move or delete. On Android 9 and older it is written into the app's own folder instead, because putting it in Downloads there would mean asking for access to all your files to save one receipt.</li>
+</ul>
+<p>There is no automatic backup and no sync, because there is nowhere for either to go.</p>
+
+<hr>
+
+<h2>Children</h2>
+<p>The app is a business tool for shops and their customers. It is not directed at children, and it collects nothing from anyone.</p>
+
+<h2>Deleting your data</h2>
+<p>Delete an invoice inside the app, or uninstall the app to remove all of them at once. There is nothing held anywhere else, so there is nothing for us to delete on your behalf and no request you need to send us. PDFs you saved into Downloads stay there until you delete them — they belong to you, not to the app.</p>
+
+<h2>Changes to this policy</h2>
+<p>If the app ever gains a capability that changes any of the above, this page will be updated before that version is published, and the date at the top will change with it.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or the app: <a href="mailto:epicproject@gmail.com">epicproject@gmail.com</a></p>
+
+<footer>
+Invoice for Offline POS — companion app to Offline POS. No accounts, no servers, no internet permission.
+</footer>
+
+</main>
