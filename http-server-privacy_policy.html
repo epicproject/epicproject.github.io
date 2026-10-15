@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +27,12 @@
         <!-- Header -->
         <header class="mb-12">
             <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Privacy Policy</h1>
-            <p class="text-gray-500 font-medium">Effective date: January 12, 2026</p>
+            <p class="text-gray-500 font-medium">Effective date: October 15, 2026</p>
         </header>
 
         <!-- Content Card -->
         <main class="bg-white shadow-sm border border-gray-100 rounded-2xl p-8 md:p-12">
-            
+
             <section class="policy-section">
                 <p class="text-lg text-gray-600 mb-6">
                     This Privacy Policy describes how the <span class="font-semibold text-gray-900">"http server"</span> app ("we", "our", "app") handles information.
@@ -41,55 +40,88 @@
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
                     <h2 class="text-blue-900 font-bold uppercase tracking-wider text-sm mb-2">Summary</h2>
                     <ul class="space-y-2 text-blue-800">
-                        <li class="flex items-start">
-                            <span class="mr-2">•</span>
-                            <span>We do not collect, sell, or share personal information.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="mr-2">•</span>
-                            <span>The app serves files from your device over your local network only.</span>
-                        </li>
+                        <li class="flex items-start"><span class="mr-2">&bull;</span><span>We do not collect, sell, or share personal information. The developer receives none of your data.</span></li>
+                        <li class="flex items-start"><span class="mr-2">&bull;</span><span>Your website files, settings and logs stay on your device.</span></li>
+                        <li class="flex items-start"><span class="mr-2">&bull;</span><span>Public tunnels and AI requests are used only when you turn them on, and are handled by the third-party providers you choose.</span></li>
+                        <li class="flex items-start"><span class="mr-2">&bull;</span><span>No accounts, no ads, no analytics.</span></li>
                     </ul>
                 </div>
             </section>
 
             <section class="policy-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Information We Collect</h2>
-                <p>We do not collect or send any personal data to our servers. The app does not use analytics or advertising SDKs.</p>
+                <p>We do not collect or send any personal data to our servers. The app does not use analytics, crash-reporting or advertising SDKs, and has no sign-up or account.</p>
             </section>
 
             <section class="policy-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Permissions and Local Data</h2>
-                <p class="mb-4">To function correctly, the app requires specific permissions used strictly for technical purposes:</p>
+                <p class="mb-4">The app requires these permissions, used strictly for technical purposes:</p>
                 <ul class="space-y-4">
                     <li class="flex flex-col md:flex-row md:items-baseline">
                         <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">INTERNET</code>
-                        <span class="text-gray-700">Used to host a local HTTP server on your device.</span>
+                        <span class="text-gray-700">Runs the web server on your device and connects to the services you choose to turn on (public tunnel, AI provider).</span>
                     </li>
                     <li class="flex flex-col md:flex-row md:items-baseline">
-                        <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">FOREGROUND_SERVICE</code>
-                        <span class="text-gray-700">Used to keep the server running in the background.</span>
+                        <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">ACCESS_NETWORK_STATE / ACCESS_WIFI_STATE</code>
+                        <span class="text-gray-700">Shows your device address on the current network so you can open your site from another device.</span>
+                    </li>
+                    <li class="flex flex-col md:flex-row md:items-baseline">
+                        <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE</code>
+                        <span class="text-gray-700">Keeps the server running while you use other apps. It runs only after you tap Start.</span>
                     </li>
                     <li class="flex flex-col md:flex-row md:items-baseline">
                         <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">POST_NOTIFICATIONS</code>
-                        <span class="text-gray-700">Used to show a notification while the server is active.</span>
+                        <span class="text-gray-700">Shows a notification, with a Stop action, while the server is active.</span>
+                    </li>
+                    <li class="flex flex-col md:flex-row md:items-baseline">
+                        <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">WAKE_LOCK</code>
+                        <span class="text-gray-700">Keeps the server reachable while the screen is off.</span>
+                    </li>
+                    <li class="flex flex-col md:flex-row md:items-baseline">
+                        <code class="bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm font-mono font-bold mr-4 mb-1 md:mb-0">RECEIVE_BOOT_COMPLETED</code>
+                        <span class="text-gray-700">Starts the server after the phone restarts, only if you enable "start on boot".</span>
                     </li>
                 </ul>
             </section>
 
             <section class="policy-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Files You Choose</h2>
-                <p>If you use <strong>"Import Website"</strong>, the app reads files from the folder you select and copies them into the app's private storage on your device. This data stays 100% on your device and is never uploaded.</p>
+                <p>When you import a website, use the file manager, receive files over Wi-Fi or mirror your site folder, the app reads or writes only the files and folders you select, inside the app's storage or the location you pick. These files are not uploaded to us.</p>
             </section>
 
             <section class="policy-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Local Network Access</h2>
-                <p>When the server is running, devices on the same local network can access the files you choose to host. This traffic stays on your local network and is <span class="underline decoration-red-300">not sent to us</span>.</p>
+                <p>While the server is running, devices on the same network can open the sites and files you host. This traffic goes directly between those devices and your phone and is <span class="underline decoration-red-300">not sent to us</span>. Access logs shown in the live console are stored on your device only.</p>
             </section>
 
             <section class="policy-section">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Data Retention</h2>
-                <p>All app data is stored locally and can be removed by clearing the app's storage or uninstalling the app from your device.</p>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Public Tunnels (optional)</h2>
+                <p>If you turn on a public tunnel, visitors reach your phone through a third-party tunnel provider (Cloudflare or Pinggy). Requests to your site pass through that provider's network, which may process technical data such as IP addresses under its own privacy policy. We do not receive this data. Anyone with the public link can open what you serve, so share it carefully.</p>
+            </section>
+
+            <section class="policy-section">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Cloud Share</h2>
+                <p>Files you share with Cloud Share are served directly from your phone. Files that visitors upload are saved on your device. Visitor details shown in the monitor, such as device type and connection time, are displayed only to you and are not sent anywhere else.</p>
+            </section>
+
+            <section class="policy-section">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">AI Website Builder (optional)</h2>
+                <p>If you use the AI builder, the prompts you write and the project context needed for the task are sent to the AI provider whose API key you enter (Anthropic or Google Gemini) and are processed under that provider's terms and privacy policy. Your API key is stored only on your device and is sent only to that provider. The feature does nothing until you add a key.</p>
+            </section>
+
+            <section class="policy-section">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">TLS Certificates</h2>
+                <p>Certificates and private keys you import or generate for HTTPS are stored on your device and are never uploaded.</p>
+            </section>
+
+            <section class="policy-section">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Children</h2>
+                <p>The app is a general-purpose developer tool and is not directed at children under 13. We do not knowingly collect data from anyone.</p>
+            </section>
+
+            <section class="policy-section">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Data Retention and Deletion</h2>
+                <p>All app data is stored locally. You can remove it by clearing the app's storage or uninstalling the app. Data held by third-party providers you use (tunnel or AI) is governed by their policies.</p>
             </section>
 
             <section class="policy-section">
