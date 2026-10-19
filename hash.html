@@ -42,6 +42,8 @@
   button.copy { font: inherit; font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
   button.copy:hover { border-color: var(--acc); color: var(--acc); }
   .hint { font-size: 12px; color: var(--mut); margin-top: 4px; }
+  .base { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; background: #0f172a; color: #e2e8f0; padding: 8px 12px; border-radius: 8px; margin: 0 0 16px; overflow-wrap: anywhere; }
+  .base span { color: #fbbf24; }
   .map { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--mut); line-height: 1.6; }
 </style>
 </head>
@@ -59,11 +61,13 @@
 <!-- Builder view -->
 <main id="builder" hidden>
   <h1>Hash Widget Generator</h1>
+  <div class="base"><code id="baseUrl"></code><span>#ID</span></div>
   <p>No database. Your widget lives entirely in the URL hash. Design it, copy the embed code, paste it anywhere.</p>
 
   <div class="grid">
     <section class="card">
       <h2>Customize</h2>
+      <div class="row two"><label for="idIn">Load from ID</label><input type="text" id="idIn" placeholder="#0hsz748 or full URL" autocomplete="off"></div>
       <div class="row two"><label for="type">Element</label>
         <select id="type"><option value="0">Button</option><option value="1">Text input</option><option value="2">Heading</option></select></div>
       <div class="row two"><label for="label">Label / text</label><input type="text" id="label" maxlength="120" value="Click me"></div>
@@ -83,6 +87,7 @@
         <select id="usePreview"><option value="z">Compressed URL (exact)</option><option value="s">Short-code URL (quantized)</option></select></div>
 
       <div class="out"><label>Compressed hash URL <button class="copy" data-c="outZ">Copy</button></label><textarea id="outZ" readonly></textarea></div>
+      <div class="out"><label>Short ID <button class="copy" data-c="outId">Copy</button></label><textarea id="outId" readonly style="min-height:36px"></textarea></div>
       <div class="out"><label>Short-code hash URL <button class="copy" data-c="outS">Copy</button></label><textarea id="outS" readonly></textarea>
         <div class="hint" id="qnote"></div></div>
       <div class="out"><label>Embed code <button class="copy" data-c="outE">Copy</button></label><textarea id="outE" readonly></textarea></div>
@@ -253,13 +258,25 @@
   /* =====================================================================
    * 5. BUILDER
    * ===================================================================== */
+  // Public URL every generated link / embed points at.
+  var BASE_URL = 'https://epicproject.github.io/hash.html';
   var ready = false;
   function initBuilder() {
     document.title = 'Hash Widget Generator';
+    $('baseUrl').textContent = BASE_URL;
     if (ready) { update(); return; }
     ready = true;
     ['type','label','h','w','r','f','bg','bgT','fg','usePreview'].forEach(function (id) {
       $(id).addEventListener('input', update); $(id).addEventListener('change', update);
+    });
+    // Paste only an ID (or any widget URL/hash) -> form fills and every output rebuilds.
+    $('idIn').addEventListener('input', async function () {
+      var v = $('idIn').value.trim(), i = v.indexOf('#'); if (i >= 0) v = v.slice(i);
+      var cfg = await parseHash(v); if (!cfg) return;
+      $('type').value = cfg.t; $('label').value = cfg.l; $('h').value = cfg.h; $('w').value = cfg.w;
+      $('r').value = cfg.r; $('f').value = cfg.f; $('fg').value = cfg.c;
+      $('bgT').checked = cfg.bg === 'transparent'; if (cfg.bg !== 'transparent') $('bg').value = cfg.bg;
+      update();
     });
     document.querySelectorAll('button.copy').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -284,11 +301,12 @@
     ['h','w','r','f'].forEach(function (id) { $(id).nextElementSibling.textContent = $(id).value + 'px'; });
     $('bg').disabled = $('bgT').checked;
 
-    var base = location.origin + location.pathname + location.search;
+    var local = location.origin + location.pathname + location.search; // preview uses the page you are on
     var z = '#' + await encodeCompressed(cfg), s = '#' + encodeShort(cfg);
     if (token !== updToken) return;
 
-    var zUrl = base + z, sUrl = base + s;
+    var zUrl = BASE_URL + z, sUrl = BASE_URL + s;
+    $('outId').value = s;
     $('outZ').value = zUrl; $('outS').value = sUrl;
 
     var q = decodeShort(encodeShort(cfg));
@@ -300,7 +318,8 @@
     $('outE').value = '<iframe src="' + src.replace(/"/g, '&quot;') + '" width="' + ew + '" height="' + eh + '" frameborder="0" scrolling="no"></iframe>';
 
     var pv = $('preview'); pv.width = ew; pv.height = eh;
-    if (pv.getAttribute('src') !== src) pv.setAttribute('src', src);
+    var pvSrc = local + (useShort ? s : z);
+    if (pv.getAttribute('src') !== pvSrc) pv.setAttribute('src', pvSrc);
   }
 
   window.addEventListener('hashchange', route);
