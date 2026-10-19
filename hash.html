@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Hash Widget Generator</title>
+<style>
+  :root { color-scheme: light; --ink:#0f172a; --mut:#64748b; --line:#e2e8f0; --bg:#f8fafc; --acc:#2563eb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); }
+  body { background: var(--bg); }
+
+  /* ---------- Renderer mode: transparent, minimal ---------- */
+  body.render { background: transparent; }
+  #widget { width: 100%; }
+
+  /* ---------- Access denied screen ---------- */
+  #denied { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #0f172a; color: #e2e8f0; padding: 24px; }
+  #denied h1 { font-size: clamp(64px, 18vw, 140px); margin: 0; letter-spacing: 6px; background: linear-gradient(90deg,#f43f5e,#f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #denied p { margin: 8px 0 0; color: #94a3b8; }
+
+  /* ---------- Builder ---------- */
+  #builder { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  #builder h1 { font-size: 22px; margin: 0 0 4px; }
+  #builder > p { margin: 0 0 20px; color: var(--mut); }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 20px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--mut); margin: 0 0 12px; }
+  .row { display: grid; grid-template-columns: 110px 1fr 48px; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px; }
+  .row.two { grid-template-columns: 110px 1fr; }
+  .row output { font-variant-numeric: tabular-nums; color: var(--mut); text-align: right; font-size: 12px; }
+  input[type=text], select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 14px; background: #fff; }
+  input[type=color] { width: 100%; height: 34px; padding: 2px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  input[type=range] { width: 100%; }
+  textarea { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; resize: vertical; min-height: 64px; }
+  .stage { min-height: 140px; display: flex; align-items: center; justify-content: center; background: repeating-conic-gradient(#f1f5f9 0% 25%, #fff 0% 50%) 0 0/16px 16px; border-radius: 8px; padding: 12px; overflow: auto; }
+  .stage iframe { border: 0; max-width: 100%; }
+  .out { margin-top: 14px; }
+  .out label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  button.copy { font: inherit; font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
+  button.copy:hover { border-color: var(--acc); color: var(--acc); }
+  .hint { font-size: 12px; color: var(--mut); margin-top: 4px; }
+  .map { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--mut); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- Access denied view (shown when a widget hash is opened outside an iframe) -->
+<section id="denied" hidden>
+  <h1>404</h1>
+  <p>Page not found.</p>
+</section>
+
+<!-- Renderer view -->
+<div id="widget" hidden></div>
+
+<!-- Builder view -->
+<main id="builder" hidden>
+  <h1>Hash Widget Generator</h1>
+  <p>No database. Your widget lives entirely in the URL hash. Design it, copy the embed code, paste it anywhere.</p>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Customize</h2>
+      <div class="row two"><label for="type">Element</label>
+        <select id="type"><option value="0">Button</option><option value="1">Text input</option><option value="2">Heading</option></select></div>
+      <div class="row two"><label for="label">Label / text</label><input type="text" id="label" maxlength="120" value="Click me"></div>
+      <div class="row"><label for="h">Height</label><input type="range" id="h" min="20" max="350" step="1" value="50"><output></output></div>
+      <div class="row"><label for="w">Width (0 = auto)</label><input type="range" id="w" min="0" max="700" step="1" value="180"><output></output></div>
+      <div class="row"><label for="r">Border radius</label><input type="range" id="r" min="0" max="70" step="1" value="8"><output></output></div>
+      <div class="row"><label for="f">Font size</label><input type="range" id="f" min="8" max="43" step="1" value="16"><output></output></div>
+      <div class="row two"><label for="bg">Background</label><input type="color" id="bg" value="#2563eb"></div>
+      <div class="row two"><label for="bgT">Transparent bg</label><input type="checkbox" id="bgT"></div>
+      <div class="row two"><label for="fg">Text color</label><input type="color" id="fg" value="#ffffff"></div>
+    </section>
+
+    <section class="card">
+      <h2>Live preview</h2>
+      <div class="stage"><iframe id="preview" title="preview" scrolling="no"></iframe></div>
+      <div class="row two" style="margin-top:12px"><label for="usePreview">Preview from</label>
+        <select id="usePreview"><option value="z">Compressed URL (exact)</option><option value="s">Short-code URL (quantized)</option></select></div>
+
+      <div class="out"><label>Compressed hash URL <button class="copy" data-c="outZ">Copy</button></label><textarea id="outZ" readonly></textarea></div>
+      <div class="out"><label>Short-code hash URL <button class="copy" data-c="outS">Copy</button></label><textarea id="outS" readonly></textarea>
+        <div class="hint" id="qnote"></div></div>
+      <div class="out"><label>Embed code <button class="copy" data-c="outE">Copy</button></label><textarea id="outE" readonly></textarea></div>
+      <div class="out"><label>Short-code map</label>
+        <div class="map">#&nbsp;T&nbsp;H&nbsp;W&nbsp;B&nbsp;C&nbsp;R&nbsp;F&nbsp;[~label]<br>
+        T type 0 button · 1 input · 2 heading<br>H height = v×10 px · W width = v×20 px (0 = auto)<br>
+        B background · C text → 36-colour palette<br>R radius = v×2 px · F font = 8+v px</div></div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =====================================================================
+   * 1. SHARED DATA MODEL
+   * A widget config is a plain object:
+   *   { t:0|1|2, h:px, w:px(0=auto), bg:"#rrggbb"|"transparent", c:"#rrggbb", r:px, f:px, l:"label" }
+   * ===================================================================== */
+
+  // 36-colour palette. Index (0-9 a-z, base36) is what the short-code stores.
+  var PALETTE = ['#000000','#ffffff','#f8fafc','#e2e8f0','#94a3b8','#475569','#1e293b','#ef4444','#f97316',
+    '#f59e0b','#eab308','#84cc16','#22c55e','#10b981','#14b8a6','#06b6d4','#0ea5e9','#3b82f6','#2563eb',
+    '#6366f1','#8b5cf6','#a855f7','#d946ef','#ec4899','#f43f5e','#7f1d1d','#9a3412','#854d0e','#166534',
+    '#115e59','#155e75','#1e3a8a','#4c1d95','#831843','#fde68a','transparent'];
+  var B36 = '0123456789abcdefghijklmnopqrstuvwxyz';
+  var TRANSPARENT_IDX = 35; // 'z'
+
+  var clamp = function (n, lo, hi) { n = Number(n); if (!isFinite(n)) n = lo; return Math.min(hi, Math.max(lo, Math.round(n))); };
+  var isColor = function (s) { return s === 'transparent' || /^#[0-9a-f]{6}$/i.test(s); };
+
+  // Validate + normalise ANY decoded object so the renderer never sees junk.
+  function sanitize(o) {
+    if (!o || typeof o !== 'object') return null;
+    var t = Number(o.t);
+    if (t !== 0 && t !== 1 && t !== 2) return null;
+    return {
+      t: t,
+      h: clamp(o.h, 10, 600),
+      w: clamp(o.w, 0, 1200),
+      bg: isColor(String(o.bg)) ? String(o.bg) : '#2563eb',
+      c: isColor(String(o.c)) ? String(o.c) : '#ffffff',
+      r: clamp(o.r, 0, 300),
+      f: clamp(o.f, 6, 120),
+      l: String(o.l == null ? '' : o.l).slice(0, 200)
+    };
+  }
+
+  /* =====================================================================
+   * 2. ENCODERS / DECODERS
+   * Hash formats:
+   *   #z.<base64url(deflate-raw(JSON))>   compressed (exact)
+   *   #b.<base64url(JSON)>                fallback if CompressionStream is missing
+   *   #<7 base36 chars>[~<urlencoded label>]  positional short-code (quantized)
+   * ===================================================================== */
+
+  function toB64u(bytes) {
+    var s = ''; for (var i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+    return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function fromB64u(str) {
+    str = str.replace(/-/g, '+').replace(/_/g, '/'); while (str.length % 4) str += '=';
+    var s = atob(str), b = new Uint8Array(s.length);
+    for (var i = 0; i < s.length; i++) b[i] = s.charCodeAt(i);
+    return b;
+  }
+  async function pipe(bytes, stream) {
+    var w = stream.writable.getWriter(); w.write(bytes); w.close();
+    return new Uint8Array(await new Response(stream.readable).arrayBuffer());
+  }
+  var HAS_CS = typeof CompressionStream === 'function' && typeof DecompressionStream === 'function';
+
+  async function encodeCompressed(cfg) {
+    var bytes = new TextEncoder().encode(JSON.stringify(cfg));
+    if (HAS_CS) { try { return 'z.' + toB64u(await pipe(bytes, new CompressionStream('deflate-raw'))); } catch (e) {} }
+    return 'b.' + toB64u(bytes);
+  }
+  async function decodeCompressed(h) {
+    var kind = h.charAt(0), body = h.slice(2), bytes = fromB64u(body);
+    if (kind === 'z') bytes = await pipe(bytes, new DecompressionStream('deflate-raw'));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  // --- Short code -------------------------------------------------------
+  // Position: 0 type | 1 height | 2 width | 3 bg | 4 text | 5 radius | 6 font
+  function nearestPalette(hex, allowTransparent) {
+    if (hex === 'transparent') return TRANSPARENT_IDX;
+    var p = function (s) { return [1, 3, 5].map(function (i) { return parseInt(s.substr(i, 2), 16); }); };
+    var a = p(hex), best = 0, bd = 1e9;
+    for (var i = 0; i < TRANSPARENT_IDX; i++) {
+      var b = p(PALETTE[i]), d = 0; for (var k = 0; k < 3; k++) d += Math.pow(a[k] - b[k], 2);
+      if (d < bd) { bd = d; best = i; }
+    }
+    return best;
+  }
+  function encodeShort(cfg) {
+    var v = [cfg.t, Math.round(cfg.h / 10), Math.round(cfg.w / 20), nearestPalette(cfg.bg),
+             nearestPalette(cfg.c), Math.round(cfg.r / 2), cfg.f - 8];
+    var code = v.map(function (n) { return B36.charAt(clamp(n, 0, 35)); }).join('');
+    return code + (cfg.l ? '~' + encodeURIComponent(cfg.l) : '');
+  }
+  function decodeShort(h) {
+    var m = /^([0-9a-z]{7})(?:~(.*))?$/i.exec(h); if (!m) return null;
+    var d = m[1].toLowerCase().split('').map(function (ch) { return B36.indexOf(ch); });
+    var label = ''; if (m[2]) { try { label = decodeURIComponent(m[2]); } catch (e) { label = m[2]; } }
+    return {
+      t: d[0], h: d[1] * 10, w: d[2] * 20, bg: PALETTE[d[3]], c: PALETTE[d[4]] === 'transparent' ? '#000000' : PALETTE[d[4]],
+      r: d[5] * 2, f: d[6] + 8, l: label
+    };
+  }
+
+  // Dispatch on hash shape. Returns a sanitized config or null. Never throws.
+  async function parseHash(raw) {
+    try {
+      var h = raw.replace(/^#/, ''); if (!h) return null;
+      var obj = /^[zb]\./.test(h) ? await decodeCompressed(h) : decodeShort(h);
+      return sanitize(obj);
+    } catch (e) { return null; }
+  }
+
+  /* =====================================================================
+   * 3. RENDERING PIPELINE
+   * hash -> parseHash -> sanitize -> render(cfg) (textContent + style props only,
+   * no innerHTML, so user text can never inject markup).
+   * ===================================================================== */
+  function render(cfg, root) {
+    root.textContent = '';
+    var tag = ['button', 'input', 'h2'][cfg.t], el = document.createElement(tag);
+    var s = el.style;
+    s.height = cfg.h + 'px';
+    s.width = cfg.w ? cfg.w + 'px' : '100%';
+    s.backgroundColor = cfg.bg;
+    s.color = cfg.c;
+    s.borderRadius = cfg.r + 'px';
+    s.fontSize = cfg.f + 'px';
+    s.fontFamily = 'inherit';
+    s.boxSizing = 'border-box';
+    s.maxWidth = '100%';
+    if (cfg.t === 0) { s.border = '0'; s.cursor = 'pointer'; el.type = 'button'; el.textContent = cfg.l; }
+    else if (cfg.t === 1) { s.border = '1px solid rgba(100,116,139,.45)'; s.padding = '0 12px'; el.type = 'text'; el.placeholder = cfg.l; s.outline = 'none'; }
+    else { s.margin = '0'; s.display = 'flex'; s.alignItems = 'center'; s.fontWeight = '700'; s.overflow = 'hidden'; el.textContent = cfg.l; }
+    root.appendChild(el);
+  }
+
+  /* =====================================================================
+   * 4. ROUTER + IFRAME GUARD
+   * ===================================================================== */
+  var $ = function (id) { return document.getElementById(id); };
+  var framed = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+  var routeToken = 0;
+
+  async function route() {
+    var token = ++routeToken, hash = location.hash;
+    var hasHash = hash.length > 1;
+    $('builder').hidden = hasHash; $('widget').hidden = true; $('denied').hidden = true;
+    document.body.classList.toggle('render', hasHash);
+    if (!hasHash) { initBuilder(); return; }
+
+    if (!framed) { $('denied').hidden = false; document.title = '404'; return; } // direct browsing blocked
+    var cfg = await parseHash(hash);
+    if (token !== routeToken) return; // a newer hashchange superseded this one
+    $('widget').hidden = false;
+    if (cfg) render(cfg, $('widget')); else $('widget').textContent = ''; // invalid -> render nothing
+    document.title = 'Widget';
+  }
+
+  /* =====================================================================
+   * 5. BUILDER
+   * ===================================================================== */
+  var ready = false;
+  function initBuilder() {
+    document.title = 'Hash Widget Generator';
+    if (ready) { update(); return; }
+    ready = true;
+    ['type','label','h','w','r','f','bg','bgT','fg','usePreview'].forEach(function (id) {
+      $(id).addEventListener('input', update); $(id).addEventListener('change', update);
+    });
+    document.querySelectorAll('button.copy').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var ta = $(b.dataset.c); ta.select();
+        (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).catch(function () { document.execCommand('copy'); });
+        var old = b.textContent; b.textContent = 'Copied'; setTimeout(function () { b.textContent = old; }, 1000);
+      });
+    });
+    update();
+  }
+
+  function readForm() {
+    return sanitize({
+      t: $('type').value, l: $('label').value, h: $('h').value, w: $('w').value, r: $('r').value, f: $('f').value,
+      bg: $('bgT').checked ? 'transparent' : $('bg').value, c: $('fg').value
+    });
+  }
+
+  var updToken = 0;
+  async function update() {
+    var token = ++updToken, cfg = readForm();
+    ['h','w','r','f'].forEach(function (id) { $(id).nextElementSibling.textContent = $(id).value + 'px'; });
+    $('bg').disabled = $('bgT').checked;
+
+    var base = location.origin + location.pathname + location.search;
+    var z = '#' + await encodeCompressed(cfg), s = '#' + encodeShort(cfg);
+    if (token !== updToken) return;
+
+    var zUrl = base + z, sUrl = base + s;
+    $('outZ').value = zUrl; $('outS').value = sUrl;
+
+    var q = decodeShort(encodeShort(cfg));
+    $('qnote').textContent = 'Short code rounds values: ' + q.h + '×' + (q.w || 'auto') + 'px, radius ' + q.r + 'px, font ' + q.f + 'px, bg ' + q.bg + ', text ' + q.c + '.';
+
+    // Embed size: use the widget's own size (auto width -> 300px).
+    var ew = cfg.w || 300, eh = cfg.h + (cfg.t === 1 ? 4 : 0);
+    var useShort = $('usePreview').value === 's', src = useShort ? sUrl : zUrl;
+    $('outE').value = '<iframe src="' + src.replace(/"/g, '&quot;') + '" width="' + ew + '" height="' + eh + '" frameborder="0" scrolling="no"></iframe>';
+
+    var pv = $('preview'); pv.width = ew; pv.height = eh;
+    if (pv.getAttribute('src') !== src) pv.setAttribute('src', src);
+  }
+
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
