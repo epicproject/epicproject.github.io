@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy &amp; Child Safety Standards - Tolo</title>
+<meta name="description" content="Privacy policy and child safety (CSAE) standards for Tolo, the peer-to-peer social app for Android and Windows.">
+<style>
+  :root { --ink:#1b1830; --mute:#5b5876; --line:#ececf3; --bg:#f6f5fb; --card:#fff; --sun1:#ffb547; --sun2:#ff5c7a; --red:#c81e4a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 48px 20px 64px; }
+  header { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+  .logo { width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg,var(--sun1),var(--sun2)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:24px; flex:none; }
+  h1 { font-size: 34px; line-height:1.15; margin:0; }
+  .sub { color:var(--mute); margin:4px 0 0; font-size:15px; }
+  nav { margin: 0 0 24px; display:flex; flex-wrap:wrap; gap:8px; }
+  nav a { font-size:14px; text-decoration:none; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:999px; padding:6px 12px; }
+  main { background:var(--card); border:1px solid var(--line); border-radius:20px; padding: 8px 28px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  section { padding: 24px 0; border-bottom:1px solid var(--line); }
+  section:last-child { border-bottom:none; }
+  h2 { font-size:22px; margin: 0 0 10px; }
+  h3 { font-size:17px; margin: 18px 0 6px; }
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  code { background:#f1f0f7; padding:1px 6px; border-radius:6px; font-size:14px; }
+  .summary { background: #fff7ec; border-left: 4px solid var(--sun1); border-radius: 0 14px 14px 0; padding: 14px 18px; }
+  .danger { background:#fff0f3; border-left:4px solid var(--red); border-radius:0 14px 14px 0; padding:14px 18px; }
+  table { width:100%; border-collapse: collapse; margin: 10px 0; font-size: 15px; }
+  th, td { text-align:left; vertical-align:top; padding: 9px 10px; border-bottom:1px solid var(--line); }
+  th { background:#faf9fd; font-weight:700; }
+  .btn { display:inline-block; margin-top:8px; padding:11px 20px; border-radius:999px; color:#fff; text-decoration:none; font-weight:700; background:linear-gradient(135deg,var(--sun1),var(--sun2)); }
+  .btn.red { background: var(--red); }
+  footer { text-align:center; color:#9a97b3; font-size:13px; margin-top:28px; }
+  a { color:#5b3fd6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">t</div>
+    <div>
+      <h1>Tolo · Privacy Policy &amp; Child Safety Standards</h1>
+      <p class="sub">Applies to Tolo for Android (<code>tolo.social.app</code>) and Tolo for Windows · Effective date: October 20, 2026</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#summary">Summary</a>
+    <a href="#data">What goes where</a>
+    <a href="#messages">Messages &amp; files</a>
+    <a href="#device">On your device</a>
+    <a href="#permissions">Permissions</a>
+    <a href="#moderation">Reports &amp; blocking</a>
+    <a href="#deletion">Deleting data</a>
+    <a href="#child-safety">Child safety (CSAE)</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <p>Tolo is a peer-to-peer social app built on the open <strong>Nostr</strong> protocol. There is no Tolo company server and no Tolo account: you are identified by a cryptographic key created on your device. This policy explains what Tolo sends, to whom, and what stays on your device.</p>
+      <div class="summary">
+        <ul>
+          <li>The developer of Tolo does not collect, receive, sell or share your personal data.</li>
+          <li>No ads, no analytics, no tracking, no crash-reporting SDKs, no location access.</li>
+          <li>Your full photos stay on your device and are sent directly to people who open them.</li>
+          <li>Posts, profile details and likes are <strong>public</strong> and travel through public Nostr relays.</li>
+          <li>Private messages are end-to-end encrypted.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="data">
+      <h2>What goes where</h2>
+      <table>
+        <tr><th>Data</th><th>Where it goes</th><th>Who can see it</th></tr>
+        <tr><td>Profile: name, bio, cover text and colour, a small (128&nbsp;px) copy of your profile photo</td><td>Public Nostr relays</td><td>Anyone</td></tr>
+        <tr><td>Posts and comments: text, hashtags, stickers, likes, and for photos a 96&nbsp;px preview and the photo's fingerprint (hash)</td><td>Public Nostr relays</td><td>Anyone</td></tr>
+        <tr><td>People you follow (contact list)</td><td>Public Nostr relays</td><td>Anyone</td></tr>
+        <tr><td>Online status ("online"/"offline" and when)</td><td>Public Nostr relays</td><td>Anyone</td></tr>
+        <tr><td>Full-size photos</td><td>Your device only. When someone opens your photo while you are online, it is sent from your device in pieces through relays as short-lived messages that relays forward but do not store.</td><td>The person who asked for it. These pieces are not end-to-end encrypted, so a relay operator could see them while passing them on.</td></tr>
+        <tr><td>Your list of blocked people</td><td>Public Nostr relays, encrypted to your own key</td><td>Only you</td></tr>
+        <tr><td>Reports and community reviews you make</td><td>Public Nostr relays</td><td>Anyone (signed with your key)</td></tr>
+        <tr><td>Private key</td><td>Your device only, encrypted with Android Keystore / Windows DPAPI</td><td>Only you</td></tr>
+      </table>
+      <h3>Relays</h3>
+      <p>Relays are independent servers run by third parties (by default <code>relay.damus.io</code>, <code>nos.lol</code>, <code>relay.nostr.band</code> and <code>relay.primal.net</code>; you can change them in Settings → Relays). Like any server, a relay can see your IP address and when you connect, and which public events you ask for. Their own privacy policies apply. Relays cannot change your posts, because every post is signed.</p>
+      <h3>Pictures from other Nostr apps</h3>
+      <p>Some people use other Nostr apps that set a profile picture as a web address. To show it, Tolo downloads that picture from its website, which can see your IP address.</p>
+    </section>
+
+    <section id="messages">
+      <h2>Private messages and files</h2>
+      <ul>
+        <li><strong>Messages</strong> (text, stickers and reactions) are end-to-end encrypted on your device using NIP-17 and NIP-44, and wrapped so that relays cannot see the content or who sent them. Relays can see who the message is addressed to (their public key), its size and approximate time. Tolo can also read older NIP-04 messages sent by other Nostr apps.</li>
+        <li><strong>Files</strong> (up to 2&nbsp;GB) are sent directly between the two devices over an encrypted WebRTC connection after the receiver accepts. The connection set-up messages are encrypted with NIP-44 and passed through relays. To find a direct route, devices contact public STUN servers (<code>stun.l.google.com</code>, <code>stun.cloudflare.com</code>), which see your IP address. File contents never pass through relays or any Tolo server.</li>
+      </ul>
+    </section>
+
+    <section id="device">
+      <h2>Stored on your device</h2>
+      <ul>
+        <li>A local database with your key (encrypted), settings, the posts, profiles, likes and messages you have seen, and messages you sent or received (decrypted, protected by the operating system's app storage).</li>
+        <li>Your own photos, photos you opened, and files you received (Android: the app's Downloads folder; Windows: <code>Downloads\Tolo</code>). Windows app data is in <code>%APPDATA%\Tolo</code>.</li>
+        <li>Notifications for replies, likes and messages are created on your device. Tolo does not use a push-notification service.</li>
+      </ul>
+    </section>
+
+    <section id="permissions">
+      <h2>Permissions (Android)</h2>
+      <ul>
+        <li><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>: connect to relays and other devices.</li>
+        <li><code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_SPECIAL_USE</code>: keep your node online while you use other apps, so friends can load your photos and messages arrive. It shows a "Tolo is online" notification with a Stop action and can be turned off in Settings → "Stay online in background".</li>
+        <li><code>POST_NOTIFICATIONS</code>: show that notification and alerts for replies, likes and messages.</li>
+      </ul>
+      <p>Photos and files are chosen with the system picker, so Tolo has no access to your other files. Tolo never uses your location, camera, microphone or contacts.</p>
+    </section>
+
+    <section id="moderation">
+      <h2>Reports, blocking and community review</h2>
+      <ul>
+        <li>You can block anyone and report any post, photo or comment. Reported content is hidden for you right away.</li>
+        <li>Reports are public, signed Nostr events. When enough people report a post, it is shown for review to other Tolo users who are not connected to its author. If reviewers confirm it breaks the rules, all Tolo apps hide that account, and the account's own app asks relays to erase its data and signs out. Tolo keeps a one-way fingerprint of a removed key on that device so it cannot be signed back in there.</li>
+        <li>Likes and comments are rate-limited to stop automated clicking.</li>
+      </ul>
+    </section>
+
+    <section id="deletion">
+      <h2>Deleting your data</h2>
+      <ul>
+        <li><strong>On your device:</strong> Settings → Storage &amp; cache → "Clear other people's cache" removes other people's posts and photos. Settings → "Log out and wipe this device" deletes your key, messages, cache and photos from the device. Uninstalling the app also removes its data.</li>
+        <li><strong>On relays:</strong> public posts, profile, likes and follows that were sent to relays are stored by those independent operators. Tolo cannot guarantee their deletion; you can ask the relay operators directly. Your full photos were never stored on relays.</li>
+      </ul>
+    </section>
+
+    <section id="children">
+      <h2>Age</h2>
+      <p>Tolo is for people aged 18 and over. It is not directed at children, and we do not knowingly allow children to use it.</p>
+    </section>
+
+    <section id="child-safety">
+      <h2>Child Safety Standards (CSAE)</h2>
+      <div class="danger">
+        <p><strong>Zero tolerance.</strong> Tolo prohibits child sexual abuse material (CSAM) and any form of child sexual abuse and exploitation (CSAE), including sexualised images or text involving minors, grooming, sextortion and trafficking, and any content or contact that sexualises or endangers children. Accounts that share such content are removed and reported to the authorities.</p>
+      </div>
+      <h3>What we do</h3>
+      <ul>
+        <li><strong>In-app reporting:</strong> every post, photo and comment can be reported, and any account can be blocked from its profile, its posts or a chat. Reported content disappears for the reporter at once.</li>
+        <li><strong>Community review and removal:</strong> widely reported content is reviewed by unconnected Tolo users; confirmed violations remove the account from all Tolo apps and ask relays to erase it.</li>
+        <li><strong>Direct reports:</strong> anyone can report CSAE on Tolo to our child-safety contact below, with or without an account. We treat these reports as a priority and aim to respond within 24 hours.</li>
+        <li><strong>Authorities:</strong> when we become aware of CSAM, we report it to the National Center for Missing &amp; Exploited Children (NCMEC) and to the relevant law-enforcement agency, including the Nepal Police Cyber Bureau, and we cooperate with lawful requests.</li>
+        <li><strong>Relay operators:</strong> we notify the operators of relays carrying the material so they can delete it.</li>
+        <li><strong>No discovery of minors:</strong> Tolo has no features to find people by age or location and never shares location.</li>
+      </ul>
+      <h3>How to report</h3>
+      <ol>
+        <li>In the app: tap <strong>⋯</strong> on the post, comment or profile (or <strong>Report</strong> on a Gallery photo) and choose the most fitting reason.</li>
+        <li>By email to <a href="mailto:av.n@aol.com?subject=Tolo%20CSAE%20report">av.n@aol.com</a> with the subject "Tolo CSAE report". Include the account's public key (npub) or the post's link or ID if you have it. <strong>Do not attach or forward the material itself.</strong></li>
+        <li>If a child is in immediate danger, contact your local police first. You can also report to NCMEC's CyberTipline at <a href="https://report.cybertip.org" rel="noopener">report.cybertip.org</a>.</li>
+      </ol>
+      <h3>Compliance</h3>
+      <p>Tolo follows Google Play's Child Safety Standards policy and the child-safety laws that apply where Tolo is available.</p>
+      <p>Child-safety contact: <a href="mailto:av.n@aol.com">av.n@aol.com</a></p>
+    </section>
+
+    <section id="changes">
+      <h2>Changes to this policy</h2>
+      <p>If this policy changes, we will update this page and its effective date.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Questions about privacy or child safety in Tolo:</p>
+      <a class="btn" href="mailto:av.n@aol.com">av.n@aol.com</a>
+    </section>
+  </main>
+
+  <footer>© 2026 Tolo · epicproject</footer>
+</div>
+</body>
+</html>
