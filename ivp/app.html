@@ -329,17 +329,38 @@ async function renderHome() {
   }
 }
 
+function downloadFile(file) {
+  const url = URL.createObjectURL(file);
+  const a = h('a', { href: url, download: file.name, style: { display: 'none' } });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+// Packing a big video takes a while, and browsers only allow the share sheet right after a tap.
+// So pack first, then ask for a fresh tap on Download / Share.
 async function shareProject(rec) {
+  let file;
   try {
-    toast('Packing ' + rec.name + '...', 20000);
+    toast('Packing ' + rec.name + '...', 60000);
     const bytes = new Uint8Array(await rec.video.arrayBuffer());
-    const file = new File([writeBundle(parseProject(rec.project), bytes, rec.videoName)], rec.name + '.ivp', { type: 'application/octet-stream' });
-    if (navigator.canShare?.({ files: [file] })) { await navigator.share({ files: [file], title: rec.name }); toast('Shared.'); return; }
-    const url = URL.createObjectURL(file);
-    h('a', { href: url, download: file.name }).click();
-    setTimeout(() => URL.revokeObjectURL(url), 3000);
-    toast('Saved ' + file.name + '. Send it to another device and Import it there.');
-  } catch (e) { if (e.name !== 'AbortError') toast('Export failed: ' + e.message); }
+    file = new File([writeBundle(parseProject(rec.project), bytes, rec.videoName)], rec.name + '.ivp', { type: 'application/octet-stream' });
+    $('toast').classList.add('hide');
+  } catch (e) { return toast('Export failed: ' + e.message); }
+
+  const canShare = !!navigator.canShare?.({ files: [file] });
+  await dialog((box, close) => {
+    const note = h('div', { class: 'small', style: { marginTop: '10px', color: 'var(--bad)' } });
+    box.append(h('h3', {}, 'Project ready'),
+      h('p', { class: 'muted' }, file.name + ' (' + (file.size / 1048576).toFixed(1) + ' MB) has your video and all layers. Send it to another device and use Import there.'),
+      note,
+      h('div', { class: 'acts' },
+        h('button', { class: 'btn', onclick: () => close() }, 'Close'),
+        canShare ? h('button', { class: 'btn out', onclick: async () => {
+          try { await navigator.share({ files: [file], title: rec.name }); close(); }
+          catch (e) { if (e.name !== 'AbortError') note.textContent = 'Sharing is not available here (' + e.message + '). Use Download.'; }
+        } }, 'Share') : null,
+        h('button', { class: 'btn pri', onclick: () => { downloadFile(file); toast('Downloaded ' + file.name); close(); } }, 'Download')));
+  });
 }
 
 $('importFile').onchange = async (e) => {
