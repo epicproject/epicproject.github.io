@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Video SDK demo</title>
+  <style>
+    body{margin:0;background:#0b0b12;color:#eee;font:16px system-ui,sans-serif}
+    main{max-width:760px;margin:0 auto;padding:24px 16px}
+    h1{font-size:22px} .row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    button.demo{background:#1d1d2c;color:#eee;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}
+    pre{background:#14141f;padding:12px;border-radius:12px;overflow:auto;max-height:180px;font-size:12px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Interactive Video SDK</h1>
+  <div id="player"></div>
+  <div class="row">
+    <button class="demo" id="debug">Show layer outlines</button>
+    <button class="demo" id="seek">Jump to 5 s</button>
+  </div>
+  <pre id="log">Events appear here...</pre>
+</main>
+
+<!-- The whole SDK is one file. -->
+<script src="./dist/interactive-video-sdk.min.js"></script>
+<script>
+  const { InteractiveVideoPlayer } = InteractiveVideoSDK;
+
+  const project = {
+    schema_version: 2,
+    video: 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    hotspots: [
+      { id: 'follow', name: 'Follow me', timestamp_start: 5200, timestamp_end: 9000,
+        keyframes: [{ t: 5200, x: 10, y: 65, w: 40, h: 9 }, { t: 7000, x: 50, y: 40, w: 40, h: 9 }, { t: 9000, x: 30, y: 20, w: 40, h: 9 }],
+        shape: 'pill', visible: true, label: 'Visit flutter.dev', color: '#7c5cff',
+        action: { type: 'link', url: 'https://flutter.dev' } },
+      { id: 'qr', name: 'QR', timestamp_start: 1000, timestamp_end: 4500,
+        keyframes: [{ t: 1000, x: 62, y: 8, w: 32, h: 9 }], shape: 'rect', visible: true, label: 'Scan QR', color: '#22d3ee',
+        action: { type: 'qr', url: 'https://flutter.dev', title: 'Learn Flutter' } },
+      { id: 'hidden', name: 'Invisible popup', timestamp_start: 0, timestamp_end: 12000,
+        keyframes: [{ t: 0, x: 5, y: 40, w: 20, h: 30 }], shape: 'ellipse', visible: false, label: 'Secret',
+        color: '#ff5c7a', action: { type: 'popup', title: 'Hidden hotspot', message: 'This tap area has no visible button.' } },
+    ],
+  };
+
+  const player = new InteractiveVideoPlayer(document.getElementById('player'), { project, controls: true });
+  const log = document.getElementById('log');
+  for (const name of ['action', 'layerenter', 'layerleave', 'popupopen', 'popupclose', 'error']) {
+    player.on(name, (e) => { log.textContent = name + ': ' + (e.layer?.id ?? e.error?.message ?? '') + '\n' + log.textContent; });
+  }
+  let debug = false;
+  document.getElementById('debug').onclick = () => player.setDebug((debug = !debug));
+  document.getElementById('seek').onclick = () => player.seek(5000);
+  window.player = player;
+</script>
+</body>
+</html>
