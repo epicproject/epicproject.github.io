@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Sponsor City</title>
+<style>
+  :root {
+    --bg: #ffffff; --ink: #16181d; --dim: #5a6070;
+    --line: #e3e5ee; --accent: #3561fd; --panel: #f6f7fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1116; --ink: #e8eaf2; --dim: #9aa0b4;
+      --line: #262a36; --accent: #7fa0ff; --panel: #161922;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 20px 80px;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.4px; }
+  h2 { font-size: 20px; margin: 38px 0 10px; letter-spacing: -0.2px; }
+  h3 { font-size: 16px; margin: 24px 0 6px; color: var(--accent); }
+  p, li { color: var(--ink); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+  a { color: var(--accent); }
+  code {
+    background: var(--panel); padding: 1px 5px; border-radius: 4px;
+    font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--dim); font-size: 13px; text-transform: uppercase;
+       letter-spacing: 0.4px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  @media (max-width: 520px) {
+    body { padding: 28px 16px 60px; }
+    h1 { font-size: 25px; }
+    table, th, td { font-size: 14px; }
+    th, td { padding: 8px 8px; }
+  }
+</style>
+<main>
+<h1>Privacy Policy — Sponsor City</h1>
+<p><strong>Last updated: 25 November 2026</strong></p>
+<p>Sponsor City (<code>com.sponsor.city.epicproject</code>) is a 3D open-world game. This policy explains what the game keeps on your phone, what it sends out when you play with other people, and what it never touches.</p>
+<p>It is written to describe what the software actually does. Where something could be read two ways, the stricter reading is the one meant.</p>
+<hr>
+<h2>The short version</h2>
+<ul>
+<li>The game has <strong>no accounts and no sign-in</strong>. You never give us an identity.</li>
+<li>It contains <strong>no analytics, no crash reporting and no advertising network</strong>. The sponsor brands you see on crates in the city are invented names written into the game.</li>
+<li><strong>We operate no server.</strong> There is nowhere for your data to be sent to us, and we could not read it if you tried.</li>
+<li>Your progress — coins, history, settings, the campaigns you create — stays in the game&#x27;s private storage on your phone.</li>
+<li>Multiplayer sends a little data to <strong>public relays run by other people</strong>. You can switch it off in Settings.</li>
+</ul>
+<hr>
+<h2>What the game keeps on your phone</h2>
+<p>All of it is held in the app&#x27;s own private storage, which other apps cannot read:</p>
+<table>
+<tr><th>What</th><th>Examples</th></tr>
+<tr><td>Player profile</td><td>an auto-generated player name such as <code>PLAYER_3166</code>, level, crates opened</td></tr>
+<tr><td>Game progress</td><td>coins, reward history, items bought, shops owned, fines and police record</td></tr>
+<tr><td>Campaigns</td><td>the sponsor campaigns you create in the game, including any logo image you pick</td></tr>
+<tr><td>Settings</td><td>graphics quality, control sensitivity, relay list, multiplayer on or off</td></tr>
+<tr><td>Multiplayer key</td><td>a key pair generated on the device, used to sign what you send. It is never shown to us</td></tr>
+</table>
+<p>You do not type a real name, an email address or a phone number anywhere in the game, and the game never asks for one.</p>
+<hr>
+<h2>Multiplayer: what leaves your phone</h2>
+<p>Multiplayer uses the <strong>Nostr</strong> network. The game connects to public relays — by default <code>nos.lol</code>, <code>relay.damus.io</code> and <code>relay.primal.net</code> — over an encrypted connection (<code>wss://</code>). These relays are run by other people, not by us, and each has its own terms.</p>
+<p>While multiplayer is on, the game publishes:</p>
+<table>
+<tr><th>What</th><th>Kept by relays?</th></tr>
+<tr><td>Your position and movement in the game world, with your player name</td><td>No — sent as ephemeral events that relays pass on and do not store</td></tr>
+<tr><td>Chat lines you type or speak into the game</td><td>No — ephemeral in the same way</td></tr>
+<tr><td>City events: fines, thefts and other in-game offences, with your player name</td><td><strong>Yes</strong> — these are ordinary events, so a relay may store them and anyone can read them</td></tr>
+</table>
+<p>Two things follow from that, and you should know both before you play online:</p>
+<ul>
+<li>Anything the game publishes is <strong>public</strong>. Do not type anything into the in-game chat that you would not put on a public noticeboard.</li>
+<li>Once an event has reached a public relay, <strong>we cannot take it back</strong>. We do not run those relays and have no way to delete from them.</li>
+</ul>
+<p><strong>Turning it off:</strong> open Settings in the game and switch the network to OFFLINE. The whole game still works; you simply play alone. You can also replace the relay list with your own relay.</p>
+<p>The position inside the game world is a coordinate in an invented city. The game does <strong>not</strong> use your device&#x27;s location, GPS or network location, and asks for no location permission.</p>
+<hr>
+<h2>Permissions</h2>
+<p>The game requests one Android permission:</p>
+<table>
+<tr><th>Permission</th><th>Why</th></tr>
+<tr><td><code>INTERNET</code></td><td>To reach the multiplayer relays. Nothing else in the game needs the network</td></tr>
+</table>
+<p>There is no camera, microphone, contacts, storage or location permission. Speech input exists only in desktop browsers that provide it; the Android app has no voice capture at all.</p>
+<hr>
+<h2>Children</h2>
+<p>Sponsor City is not directed at children. It is a city game with mild crime-themed play — police, fines and theft — and an open chat with other players, so it is meant for teenagers and adults. It does not knowingly collect anything from anyone, of any age.</p>
+<hr>
+<h2>Money</h2>
+<p>Coins in Sponsor City are points inside the game. They are <strong>not</strong> money, they cannot be bought, and they cannot be cashed out. The game takes no payment and holds no payment details.</p>
+<hr>
+<h2>Keeping and deleting your data</h2>
+<ul>
+<li>Everything the game stores sits on your phone until you delete it.</li>
+<li><strong>Uninstalling the game erases all of it</strong>, including the multiplayer key.</li>
+<li>Ephemeral multiplayer messages are gone as soon as they are delivered.</li>
+<li>City events already published to public relays stay with those relays. Playing offline from the start is the only way to publish nothing.</li>
+</ul>
+<p>Because we hold nothing, there is nothing for us to delete on your behalf and no request you need to make to us.</p>
+<hr>
+<h2>Changes to this policy</h2>
+<p>If the game gains a feature that changes any of the above, this policy is updated before that version is released, and the date at the top changes with it.</p>
+<hr>
+<h2>Contact</h2>
+<p>Questions about this policy, or about anything the game does with your data:</p>
+<p><strong>0.epicproject@gmail.com</strong></p>
+<p>Sponsor City is published by <strong>Epic Project</strong>, a non-profit open-source initiative building practical Android and Windows apps for everyday life.</p>
+</main>
+</html>
